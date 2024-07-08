@@ -1,0 +1,9 @@
+[tool.black]
+line-length = 88  # 设置行长度
+target-version = ["py310"]  # 指定目标Python版本
+
+
+
+[tool.flake8]
+max-line-length = 88
+ignore = ["E203"]
