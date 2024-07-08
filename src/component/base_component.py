@@ -1,10 +1,11 @@
 # Copyright (c) BrainMatrix. All rights reserved.
-import json
 import asyncio
+import json
 
 from src.component.resource import Resource
 
-class BaseComponent(object):
+
+class BaseComponent:
 
     def __init__(self, name=None, resources=None):
         self.name = name
@@ -19,17 +20,16 @@ class BaseComponent(object):
         # Set resource allocation here
         try:
             self.resources = resources
-        except:
-            print("Error in setting up resources")
+        except Exception as e:
+            print("Error in setting up resources", "Error:", e)
 
     async def __call__(self):
         # Executing component work
         await self.execute()
 
-        # Calling sub components
-        # for component in self.sub_components.values():
-        #     component()
-        await asyncio.gather(*(component() for component in self.sub_components.values()))
+        await asyncio.gather(
+            *(component() for component in self.sub_components.values())
+        )
 
     async def execute(self):
         print(

@@ -1,5 +1,5 @@
 # Copyright (c) BrainMatrix. All rights reserved.
-class Resource(object):
+class Resource:
 
     def __init__(self, use_cpu=False, use_gpu=False, use_multi_gpu_ids=[]):
         self.use_cpu = use_cpu
