@@ -4,117 +4,176 @@ import unittest
 
 from src.component import BaseComponent, ComponentName
 from src.resource import Resource
+from src.model import ModelName
+from src.resource import ResourceManager
 
 
 class MainComponent(BaseComponent):
-    def __init__(self, name):
-        super().__init__(name)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     async def execute(self):
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
         await asyncio.sleep(
             1
         )  # time.sleep Asynchronous blocking  ; asyncio.sleep  Asynchronous non-blocking
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
 
-
-class SubComponent1(BaseComponent):
-
-    def __init__(self, name):
-        super().__init__(name)
+class SpeechRecognitionComponent(BaseComponent):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     async def execute(self):
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)  
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
 
-
-class SubComponent2(BaseComponent):
-
-    def __init__(self, name):
-        super().__init__(name)
+class OCRComponent(BaseComponent):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     async def execute(self):
+
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
-        await asyncio.sleep(4)
+        await asyncio.sleep(1)
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
 
 
-class SubComponent3(BaseComponent):
+class StringToolsComponent(BaseComponent):
 
-    def __init__(self, name):
-        super().__init__(name)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     async def execute(self):
+
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
 
 
-class SubComponent11(BaseComponent):
-    def __init__(self, name):
-        super().__init__(name)
+class LLMComponent(BaseComponent):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     async def execute(self):
+
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
-        await asyncio.sleep(3)
+        await asyncio.sleep(1)
         print(
-            f"Executing component {self.name} with resources: {self.resources.__dict__}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
+        )
+
+
+class SpeechSynthesisComponent(BaseComponent):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    async def execute(self):
+
+        print(
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
+        )
+        await asyncio.sleep(1)
+        print(
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
 
 
 class TestComponent(unittest.TestCase):
     def test_component_execution(self):
-        main_component = MainComponent(ComponentName.MAIN)
-        sub_component1 = SubComponent1(ComponentName.SUB_1)
-        sub_component2 = SubComponent2(ComponentName.SUB_2)
-        sub_component3 = SubComponent3(ComponentName.SUB_3)
-        sub_component11 = SubComponent11(ComponentName.SUB_1_1)
+        ## init resource manager
+        resource_manager = ResourceManager()
 
-        # Adding subcomponents
-        main_component.add_sub_component(sub_component1, sub_component2, sub_component3)
-        sub_component1.add_sub_component(sub_component11)
+        resource_manager.add_model(
+            ModelName.Whisper,
+            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+        )
+        # resource_manager.allocate_resources(ModelName.Whisper)
+        resource_manager.add_model(
+            ModelName.Parseq,
+            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+        )
+        resource_manager.add_model(
+            ModelName.OPENCHAT,
+            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+        )
 
-        # Setting up resources
-        main_component.setup(
-            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[0, 1])
+        resource_manager.add_model(
+            ModelName.CHATTTS,
+            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
         )
-        main_component.setup(
-            Resource(use_cpu=False, use_gpu=True, use_multi_gpu_ids=[])
+
+        ## build component
+
+        main_component = MainComponent(name=ComponentName.MAIN,
+                                       call_model_list=None,
+                                       resource_manager=resource_manager,)
+
+        speech_recognition_component = SpeechRecognitionComponent(
+            name=ComponentName.SPEECH_RECOGNITION,
+            call_model_list=[
+                ModelName.Whisper,
+            ],
+            resource_manager=resource_manager,
         )
-        sub_component1.setup(
-            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[])
+
+        ocr_component = OCRComponent(
+            name=ComponentName.OCR,
+            call_model_list=[
+                ModelName.Parseq,
+            ],
+            resource_manager=resource_manager,
         )
-        sub_component2.setup(
-            Resource(use_cpu=False, use_gpu=True, use_multi_gpu_ids=[2, 3])
+
+        string_tools_component = StringToolsComponent(
+            name=ComponentName.STRING_TOOLS,
+            call_model_list=None,
+            resource_manager=resource_manager,
         )
-        sub_component3.setup(
-            Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[])
+        llm_component = LLMComponent(
+            name=ComponentName.LLM,
+            call_model_list=[
+                ModelName.OPENCHAT,
+            ],
+            resource_manager=resource_manager,
         )
-        sub_component11.setup(
-            Resource(use_cpu=False, use_gpu=True, use_multi_gpu_ids=[0, 1, 2])
+        speech_synthesis_component = SpeechSynthesisComponent(
+            name=ComponentName.TEXT_TO_SPEECH,
+            call_model_list=[
+                ModelName.CHATTTS,
+            ],
+            resource_manager=resource_manager,
         )
+
+        main_component.add_sub_component(speech_recognition_component, ocr_component)
+        speech_recognition_component.add_sub_component(string_tools_component)
+        ocr_component.add_sub_component(string_tools_component)
+        string_tools_component.add_sub_component(llm_component)
+        llm_component.add_sub_component(speech_synthesis_component)
 
         # Calling the main component
         asyncio.run(main_component())
+        main_component.print_resource_strategy()
 
 
 if __name__ == "__main__":
