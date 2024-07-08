@@ -6,6 +6,9 @@ class Resource:
         self.use_gpu = use_gpu
         self.use_multi_gpu_ids = use_multi_gpu_ids
 
+    def __str__(self):
+        return f"Resource(use_cpu={self.use_cpu}, use_gpu={self.use_gpu}, use_multi_gpu_ids={self.use_multi_gpu_ids})"
+
         # assert self.use_cpu or self.use_gpu, "At least one of CPU or GPU should be used"
         # assert (
         #     self.use_gpu and self.use_cpu
