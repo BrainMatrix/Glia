@@ -2,11 +2,20 @@
 import asyncio
 import unittest
 
+from typing import Any
+import logging
+
+
 from src.component import BaseComponent, ComponentName
 from src.resource import Resource
 from src.model import ModelName
 from src.resource import ResourceManager
+from src.workflow import BaseWorkflow
 
+# 配置日志级别和输出格式
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 class MainComponent(BaseComponent):
     def __init__(self, **kwargs):
@@ -121,47 +130,37 @@ class SpeechSynthesisComponent(BaseComponent):
         return self.process_result
 
 
+class TestWorkflow(BaseWorkflow):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    # async def run(self, data: Any) -> None:
+    #     asyncio.run(self.components[0](data))
+
+
 class TestComponent(unittest.TestCase):
     def test_component_execution(self):
         ## init resource manager
         resource_manager = ResourceManager()
 
-        # resource_manager.register_model(
-        #     ModelName.Whisper,
-        #     Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
-        # )
-        # # resource_manager.allocate_resources(ModelName.Whisper)
-        # resource_manager.register_model(
-        #     ModelName.Parseq,
-        #     Resource(use_cpu=False, use_gpu=True, use_multi_gpu_ids=[0, 1]),
-        # )
-        # resource_manager.register_model(
-        #     ModelName.OPENCHAT,
-        #     Resource(use_cpu=True, use_gpu=True, use_multi_gpu_ids=[0, 2]),
-        # )
+        resource_manager.register_model_list(
+            {
+                ModelName.Whisper: Resource(
+                    use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]
+                ),
+                ModelName.Parseq: Resource(
+                    use_cpu=False, use_gpu=True, use_multi_gpu_ids=[0]
+                ),
+                ModelName.OPENCHAT: Resource(
+                    use_cpu=False, use_gpu=True, use_multi_gpu_ids=[1,2]
+                ),
+                ModelName.CHATTTS: Resource(
+                    use_cpu=False, use_gpu=True, use_multi_gpu_ids=[3]
+                ),
+            }
+        )
 
-        # resource_manager.register_model(
-        #     ModelName.CHATTTS,
-        #     Resource(use_cpu=False, use_gpu=True, use_multi_gpu_ids=[1, 3]),
-        # )
-
-        union_model_resources = {
-            ModelName.Whisper: Resource(
-                use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]
-            ),
-            ModelName.Parseq: Resource(
-                use_cpu=False, use_gpu=True, use_multi_gpu_ids=[0, 1]
-            ),
-            ModelName.OPENCHAT: Resource(
-                use_cpu=True, use_gpu=True, use_multi_gpu_ids=[0, 2]
-            ),
-            ModelName.CHATTTS: Resource(
-                use_cpu=False, use_gpu=True, use_multi_gpu_ids=[0, 3]
-            ),
-        }
-        resource_manager.register_model_list(union_model_resources)
         ## build component
-
         main_component = MainComponent(
             name=ComponentName.MAIN,
             call_model_name=None,
@@ -198,31 +197,57 @@ class TestComponent(unittest.TestCase):
             resource_manager=resource_manager,
         )
 
-        main_component.add_sub_component(speech_recognition_component)
-        speech_recognition_component.add_sub_component(string_tools_component)
-        # ocr_component.add_sub_component(string_tools_component)
-        string_tools_component.add_sub_component(llm_component)
-        llm_component.add_sub_component(speech_synthesis_component)
-
-        # Calling the main component
-        asyncio.run(main_component(prev_result=None))
-        main_component.print_resource_strategy()
-
-        #########
-        main_component = MainComponent(
-            name=ComponentName.MAIN,
-            call_model_name=None,
+        bwf = BaseWorkflow(
+            workflow_name="Test_Workflow ID---1",
+            components=[
+                speech_recognition_component,
+                string_tools_component,
+                llm_component,
+                speech_synthesis_component,
+            ],
             resource_manager=resource_manager,
         )
 
-        main_component.add_sub_component(ocr_component)
-        ocr_component.add_sub_component(string_tools_component)
-        string_tools_component.add_sub_component(llm_component)
-        llm_component.add_sub_component(speech_synthesis_component)
+        asyncio.run(bwf(data="这是用户输入的东西"))
+        bwf.head_component.print_resource_strategy()
+
+        bwf2 = BaseWorkflow(
+            workflow_name="Test_Workflow ID---2",
+            components=[
+                ocr_component,
+                string_tools_component,
+                llm_component,
+                speech_synthesis_component,
+            ],
+            resource_manager=resource_manager,
+        )
+        asyncio.run(bwf2(data="这是用户输入的东西"))
+        bwf2.head_component.print_resource_strategy()
+
+        # main_component.add_sub_component(speech_recognition_component)
+        # speech_recognition_component.add_sub_component(string_tools_component)
+        # string_tools_component.add_sub_component(llm_component)
+        # llm_component.add_sub_component(speech_synthesis_component)
 
         # Calling the main component
-        asyncio.run(main_component(prev_result=None))
-        main_component.print_resource_strategy()
+        # asyncio.run(main_component(prev_result=None))
+        # main_component.print_resource_strategy()
+
+        # #########
+        # main_component = MainComponent(
+        #     name=ComponentName.MAIN,
+        #     call_model_name=None,
+        #     resource_manager=resource_manager,
+        # )
+
+        # main_component.add_sub_component(ocr_component)
+        # ocr_component.add_sub_component(string_tools_component)
+        # string_tools_component.add_sub_component(llm_component)
+        # llm_component.add_sub_component(speech_synthesis_component)
+
+        # # Calling the main component
+        # asyncio.run(main_component(prev_result=None))
+        # main_component.print_resource_strategy()
 
 
 if __name__ == "__main__":
