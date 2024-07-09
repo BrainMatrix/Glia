@@ -1,26 +1,30 @@
 import logging
 from typing import Dict, List
+from enum import Enum
 
 from src.resource import Resource
+
+from src.model import ModelName
 
 
 # 定义资源管理类
 class ResourceManager:
     def __init__(self):
-        self.models: Dict[str, Resource] = {}  # 存储模型资源需求
+        self.models: Dict[Enum, Resource] = {}  # 存储模型资源需求
         self.allocated_resources: Dict[str, Resource] = {}  # 存储已分配的资源
         self.monitored_models: List[str] = []  # 存储需要监控的模型
 
-    def add_model(self, model_name: str, resources: Resource):
+    def register_model(self, model_name: Enum, resources: Resource):
         self.models[model_name] = resources
-        logging.info(f"Added model {model_name} with resources {resources}")
+        logging.info(f"Register model {model_name} with resources {resources}")
 
-    def add_model_list(self, union_model_resources):
+    def register_model_list(self, union_model_resources):
         for model_name, resources in union_model_resources.items():
             self.models[model_name] = resources
-        logging.info(f"Added model {model_name} with resources {resources}")
+            # self.allocate_resources(model_name)
+            logging.info(f"Register model {model_name} with resources {resources}")
 
-    def allocate_resources(self, model_name: str):
+    def allocate_resources(self, model_name: Enum):
         if model_name in self.models:
             self.allocated_resources[model_name] = self.models[model_name]
             logging.info(
@@ -29,14 +33,14 @@ class ResourceManager:
         else:
             logging.warning(f"Model {model_name} not found")
 
-    def monitor_model(self, model_name: str):
+    def monitor_model(self, model_name: Enum):
         if model_name in self.models:
             self.monitored_models.append(model_name)
             logging.info(f"Monitoring started for model {model_name}")
         else:
             logging.warning(f"Model {model_name} not found")
 
-    def adjust_resources(self, model_name: str, new_resources: Resource):
+    def adjust_resources(self, model_name: Enum, new_resources: Resource):
         if model_name in self.allocated_resources:
             self.allocated_resources[model_name] = new_resources
             logging.info(
@@ -45,10 +49,10 @@ class ResourceManager:
         else:
             logging.warning(f"Model {model_name} not found or not allocated")
 
-    def set_security_policy(self, model_name: str, policy: str):
+    def set_security_policy(self, model_name: Enum, policy: str):
         logging.info(f"Set security policy for model {model_name}: {policy}")
 
-    def set_permissions(self, model_name: str, permissions: List[str]):
+    def set_permissions(self, model_name: Enum, permissions: List[str]):
         logging.info(f"Set permissions for model {model_name}: {permissions}")
 
     def log_resources(self):
@@ -66,7 +70,7 @@ if __name__ == "__main__":
     # model_resources = Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[])
 
     # # 添加模型及其资源需求
-    # resource_manager.add_model("Model_A", model_resources)
+    # resource_manager.register_model("Model_A", model_resources)
 
     # print("test", resource_manager.models["Model_A"])
 
@@ -92,22 +96,22 @@ if __name__ == "__main__":
 
     resource_manager = ResourceManager()
 
-    resource_manager.add_model(
+    resource_manager.register_model(
         ModelName.Whisper.value,
         Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
     )
 
-    resource_manager.add_model(
+    resource_manager.register_model(
         ModelName.Parseq.value,
         Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
     )
 
-    resource_manager.add_model(
+    resource_manager.register_model(
         ModelName.OPENCHAT.value,
         Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
     )
 
-    resource_manager.add_model(
+    resource_manager.register_model(
         ModelName.CHATTTS.value,
         Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
     )
