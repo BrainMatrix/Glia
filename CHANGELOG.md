@@ -1,9 +1,8 @@
-##  (2024-07-08)
+# Changelog
 
-* 🐛 fix: convert str type to enumeration type ([4ad4d12](https://github.com/BrainMatrix/Glia/commit/4ad4d12))
-* 🔖 tag(package.json): v1.0.1 ([b42b079](https://github.com/BrainMatrix/Glia/commit/b42b079))
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-
+## [1.0.2](https://github.com/BrainMatrix/Glia/compare/v1.0.1...v1.0.2) (2024-07-09)
 
 ## 1.0.0 (2024-07-08)
 
@@ -13,6 +12,3 @@
 * 📝 docs(CHANGELOG.md): automatic update ([73d24b1](https://github.com/BrainMatrix/Glia/commit/73d24b1))
 * 🔖 tag(package.json): v1.0.0 ([8f834a4](https://github.com/BrainMatrix/Glia/commit/8f834a4))
 * Initial commit ([8c7a3e5](https://github.com/BrainMatrix/Glia/commit/8c7a3e5))
-
-
-
