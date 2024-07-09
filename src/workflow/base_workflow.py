@@ -24,8 +24,14 @@ class BaseWorkflow(object):
         self.workflow_name = workflow_name
         self.components = components
         self.resource_manager = resource_manager
-        for i in range(len(self.components) - 1):
-            self.components[i].add_sub_component(self.components[i + 1])
+        for i in range(len(self.components)):
+            model_name: Enum = components[i].call_model_name
+            if model_name is not None:
+                self.components[i].call_model_resources[model_name] = (
+                    resource_manager.models[model_name] if model_name else None
+                )
+            if i != len(self.components) - 1:
+                self.components[i].add_sub_component(self.components[i + 1])
         self.head_component = self.components[0]
         self.set_up()  # allocate resources
 
@@ -36,7 +42,7 @@ class BaseWorkflow(object):
         module = importlib.import_module(module_path)
         Instance = getattr(module, class_name)
         return Instance()
-#添加自定义模型加载，workerflow和模型资源管理的静态分配
+
     def set_up(
         self,
     ):
