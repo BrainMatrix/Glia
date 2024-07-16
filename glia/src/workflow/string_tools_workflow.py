@@ -1,9 +1,9 @@
 import asyncio
 
-from .base_component import BaseComponent
+from .base_workflow import BaseWorkflow
 
 
-class SpeechSynthesisComponent(BaseComponent):
+class StringToolsWorkflow(BaseWorkflow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -14,7 +14,11 @@ class SpeechSynthesisComponent(BaseComponent):
             f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
         await asyncio.sleep(1)
-        self.process_result = self.call_model(self.prev_result)
+        self.process_result = (
+            self.prev_result + ", 字符串成功处理完毕!"
+            if self.prev_result
+            else "hh" + "字符串成功处理完毕!"
+        )
         print(self.process_result)
         print(
             f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."

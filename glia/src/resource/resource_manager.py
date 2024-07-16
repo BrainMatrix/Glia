@@ -2,29 +2,29 @@ import logging
 from typing import Dict, List
 from enum import Enum
 
-from src.resource import Resource
+from glia.src.resource import Resource
 
-from src.model import ModelName
+from glia.src.model import ModelName
 
 
 # 定义资源管理类
 class ResourceManager:
     def __init__(self):
-        self.models: Dict[Enum, Resource] = {}  # 存储模型资源需求
+        self.models: Dict[str, Resource] = {}  # 存储模型资源需求
         self.allocated_resources: Dict[str, Resource] = {}  # 存储已分配的资源
         self.monitored_models: List[str] = []  # 存储需要监控的模型
 
-    def register_model(self, model_name: Enum, resources: Resource):
+    def register_model(self, model_name: str, resources: Resource):
         self.models[model_name] = resources
         logging.info(f"Register model {model_name} with resources {resources}")
 
     def register_model_list(self, union_model_resources):
         for model_name, resources in union_model_resources.items():
-            self.models[model_name] = resources
+            self.register_model(model_name, resources)
             # self.allocate_resources(model_name)
             logging.info(f"Register model {model_name} with resources {resources}")
 
-    def allocate_resources(self, model_name: Enum):
+    def allocate_resources(self, model_name: str):
         if model_name in self.models:
             self.allocated_resources[model_name] = self.models[model_name]
             logging.info(
@@ -33,14 +33,14 @@ class ResourceManager:
         else:
             logging.warning(f"Model {model_name} not found")
 
-    def monitor_model(self, model_name: Enum):
+    def monitor_model(self, model_name: str):
         if model_name in self.models:
             self.monitored_models.append(model_name)
             logging.info(f"Monitoring started for model {model_name}")
         else:
             logging.warning(f"Model {model_name} not found")
 
-    def adjust_resources(self, model_name: Enum, new_resources: Resource):
+    def adjust_resources(self, model_name: str, new_resources: Resource):
         if model_name in self.allocated_resources:
             self.allocated_resources[model_name] = new_resources
             logging.info(
@@ -49,10 +49,10 @@ class ResourceManager:
         else:
             logging.warning(f"Model {model_name} not found or not allocated")
 
-    def set_security_policy(self, model_name: Enum, policy: str):
+    def set_security_policy(self, model_name: str, policy: str):
         logging.info(f"Set security policy for model {model_name}: {policy}")
 
-    def set_permissions(self, model_name: Enum, permissions: List[str]):
+    def set_permissions(self, model_name: str, permissions: List[str]):
         logging.info(f"Set permissions for model {model_name}: {permissions}")
 
     def log_resources(self):
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     # # 记录当前资源状态
     # resource_manager.log_resources()
-    from src.model import ModelName
+    from glia.src.model import ModelName
 
     resource_manager = ResourceManager()
 

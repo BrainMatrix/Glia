@@ -6,15 +6,18 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
-from src.component.component_name import ComponentName
-from src.component.llm_component import LLMComponent
-from src.component.speech_recognition_component import SpeechRecognitionComponent
-from src.component.string_tools_component import StringToolsComponent
-from src.component.speech_synthesis_component import SpeechSynthesisComponent
-from src.resource.resource import Resource
-from src.resource.resource_manager import ResourceManager
-from src.model.model_name import ModelName
-from src.workflow.base_workflow import BaseWorkflow
+
+from glia.src.workflow.workflow_name import WorkflowName
+from glia.src.workflow.llm_workflow import LLMWorkflow
+from glia.src.workflow.speech_recognition_workflow import SpeechRecognitionWorkflow
+from glia.src.workflow.string_tools_workflow import StringToolsWorkflow
+from glia.src.workflow.speech_synthesis_workflow import SpeechSynthesisWorkflow
+from glia.src.resource.resource import Resource
+from glia.src.resource.resource_manager import ResourceManager
+from glia.src.model.model_name import MODEL_REGISTRY
+from glia.src.model.model_name import ModelName
+from glia.src.workflow.base_workflow import BaseWorkflow
+from glia.src.workflow.main_workflow import MainWorkflow
 
 
 if __name__ == "__main__":
@@ -36,29 +39,29 @@ if __name__ == "__main__":
             ),
         }
     )
-
-    bwf = BaseWorkflow(
+    bwf = MainWorkflow(
         workflow_name="Test_Workflow ID---1",
-        components=[
-            SpeechRecognitionComponent(
-                name=ComponentName.SPEECH_RECOGNITION,
+        workflows=[
+            SpeechRecognitionWorkflow(
+                name=WorkflowName.SPEECH_RECOGNITION,
                 call_model_name=ModelName.Whisper,
             ),
-            StringToolsComponent(
-                name=ComponentName.STRING_TOOLS,
+            StringToolsWorkflow(
+                name=WorkflowName.STRING_TOOLS,
                 call_model_name=None,
             ),
-            LLMComponent(
-                name=ComponentName.LLM,
+            LLMWorkflow(
+                name=WorkflowName.LLM,
                 call_model_name=ModelName.OPENCHAT,
             ),
-            SpeechSynthesisComponent(
-                name=ComponentName.TEXT_TO_SPEECH,
+            SpeechSynthesisWorkflow(
+                name=WorkflowName.TEXT_TO_SPEECH,
                 call_model_name=ModelName.CHATTTS,
             ),
         ],
         resource_manager=resource_manager,
     )
-
-    asyncio.run(bwf(data="这是用户输入的东西"))
-    bwf.head_component.print_resource_strategy()
+    input = "测试输入"
+    output = asyncio.run(bwf(data=input))
+    print(output)
+    print(bwf.workflows[-1].process_result)

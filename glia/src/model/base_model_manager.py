@@ -2,8 +2,8 @@
 import asyncio
 import json
 
-from src.resource import Resource
-from src.model.model_name import ModelName
+from glia.src.resource import Resource
+from glia.src.model.model_name import ModelName
 
 
 class ModelManager(object):

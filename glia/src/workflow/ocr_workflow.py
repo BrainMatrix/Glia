@@ -1,12 +1,9 @@
 import asyncio
 
-from .base_component import BaseComponent
-from .component_name import ComponentName
-from src.model.model_name import ModelName
+from .base_workflow import BaseWorkflow
 
 
-class LLMComponent(BaseComponent):
-
+class OCRWorkflow(BaseWorkflow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -22,4 +19,3 @@ class LLMComponent(BaseComponent):
             f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
         )
         return self.process_result
-

@@ -2,7 +2,7 @@
 from enum import Enum
 
 
-class ComponentName(Enum):
+class WorkflowName(Enum):
     MAIN = "Main"
     SUB_1 = "Sub1"
     SUB_2 = "Sub2"

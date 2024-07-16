@@ -1,14 +1,15 @@
 import asyncio
 
-from .base_component import BaseComponent
+from .base_workflow import BaseWorkflow
+from .workflow_name import WorkflowName
+from glia.src.model.model_name import ModelName
 
 
-class OCRComponent(BaseComponent):
+class SpeechRecognitionWorkflow(BaseWorkflow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     async def execute(self):
-
         print(
             f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
         )
@@ -16,6 +17,6 @@ class OCRComponent(BaseComponent):
         self.process_result = self.call_model(self.prev_result)
         print(self.process_result)
         print(
-            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resources}"
         )
         return self.process_result
