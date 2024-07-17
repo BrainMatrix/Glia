@@ -12,7 +12,9 @@ from glia.src.model.model_name import ModelName
 from glia.src.resource.resource import Resource
 from glia.src.resource.resource_manager import ResourceManager
 
+
 import asyncio
+
 
 class my_ai_algorithm(BaseWorkflow):
     """
@@ -33,33 +35,32 @@ class my_ai_algorithm(BaseWorkflow):
         self.resource_manager = resource_manager
         self.llm_agent_workflow = LLMWorkflow(
             name=WorkflowName.LLM,
-            call_model_name=ModelName.OPENCHAT,
             resource_manager=self.resource_manager,
         )
         self.sr_workflow = SpeechRecognitionWorkflow(
             name=WorkflowName.SPEECH_RECOGNITION,
-            call_model_name=ModelName.Whisper,
             resource_manager=self.resource_manager,
         )
         self.tts_workflow = SpeechSynthesisWorkflow(
             name=WorkflowName.TEXT_TO_SPEECH,
-            call_model_name=ModelName.CHATTTS,
             resource_manager=self.resource_manager,
         )
-        self.add_sub_workflow(self.llm_agent_workflow, self.sr_workflow, self.tts_workflow)
-
+        self.add_sub_workflow(
+            self.sr_workflow, self.llm_agent_workflow, self.tts_workflow
+        )
 
     async def __call__(self, input):
-        output = await self.run(input)
+        self.prev_result =  input
+        await self.run(self.prev_result)
 
-        return output
+        return self.process_result
 
     async def run(self, input):
         preprocessed_str = await self.sr_workflow(input)
         llm_output = await self.llm_agent_workflow(preprocessed_str)
         tts_output = await self.tts_workflow(llm_output)
 
-        return tts_output
+        self.process_result = tts_output
 
 
 if __name__ == "__main__":
@@ -82,9 +83,11 @@ if __name__ == "__main__":
             ),
         }
     )
-    my_workflow = my_ai_algorithm(name=WorkflowName.MAIN, resource_manager=resource_manager)
+    my_workflow = my_ai_algorithm(
+        name=WorkflowName.MAIN, resource_manager=resource_manager
+    )
 
     output = asyncio.run(my_workflow("hello"))
-    print(output)
+    print("final result: ", output)
 
     my_workflow.print_resource_strategy()

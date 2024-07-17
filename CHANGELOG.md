@@ -1,6 +1,23 @@
-##  (2024-07-16)
+##  (2024-07-17)
+
+* 🔖 tag(package.json): v1.0.8 ([6da7c35](https://github.com/BrainMatrix/Glia/commit/6da7c35))
+
+
+
+## <small>1.0.7 (2024-07-17)</small>
+
+* ✨ feat: split baseworkflow into baseworkflow and baseservice ([11af220](https://github.com/BrainMatrix/Glia/commit/11af220))
+* ✨ feat: split baseworkflow into baseworkflow and baseservice ([fcbd5f0](https://github.com/BrainMatrix/Glia/commit/fcbd5f0))
+* 📝 docs(CHANGELOG.md): automatic update ([445221a](https://github.com/BrainMatrix/Glia/commit/445221a))
+* 🔖 tag(package.json): v1.0.7 ([523aae1](https://github.com/BrainMatrix/Glia/commit/523aae1))
+* 🔖 tag(package.json): v1.0.7 ([6a01e2a](https://github.com/BrainMatrix/Glia/commit/6a01e2a))
+
+
+
+## <small>1.0.6 (2024-07-16)</small>
 
 * ✨ feat: componet modify to workflow and support pseudo.py ([cecdf8f](https://github.com/BrainMatrix/Glia/commit/cecdf8f))
+* 📝 docs(CHANGELOG.md): automatic update ([c1d7dd3](https://github.com/BrainMatrix/Glia/commit/c1d7dd3))
 * 🔖 tag(package.json): v1.0.6 ([611a799](https://github.com/BrainMatrix/Glia/commit/611a799))
 
 
