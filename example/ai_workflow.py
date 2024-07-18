@@ -14,8 +14,8 @@ from glia.src.workflow.string_tools_workflow import StringToolsWorkflow
 from glia.src.workflow.speech_synthesis_workflow import SpeechSynthesisWorkflow
 from glia.src.resource.resource import Resource
 from glia.src.resource.resource_manager import ResourceManager
-from glia.src.model.model_name import MODEL_REGISTRY
-from glia.src.model.model_name import ModelName
+from glia.src.model.model_registry import MODEL_REGISTRY
+from glia.src.model.model_registry import ModelName
 from glia.src.workflow.base_workflow import BaseWorkflow
 from glia.src.workflow.main_workflow import MainWorkflow
 

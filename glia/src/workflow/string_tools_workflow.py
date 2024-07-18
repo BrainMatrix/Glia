@@ -11,7 +11,7 @@ class StringToolsWorkflow(BaseWorkflow):
     async def execute(self):
 
         print(
-            f"Executing component {self.name.value} with resources: {self.call_model_resources}, start ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resource}, start ..."
         )
         await asyncio.sleep(1)
         self.process_result = (
@@ -21,6 +21,6 @@ class StringToolsWorkflow(BaseWorkflow):
         )
         print(self.process_result)
         print(
-            f"Executing component {self.name.value} with resources: {self.call_model_resources}, end ..."
+            f"Executing component {self.name.value} with resources: {self.call_model_resource}, end ..."
         )
         return self.process_result

@@ -4,7 +4,7 @@ from enum import Enum
 
 from glia.src.resource import Resource
 
-from glia.src.model import ModelName
+from glia.src.model import MODEL_REGISTRY
 
 
 # 定义资源管理类
@@ -92,29 +92,29 @@ if __name__ == "__main__":
 
     # # 记录当前资源状态
     # resource_manager.log_resources()
-    from glia.src.model import ModelName
+    # from glia.src.model import ModelName
 
-    resource_manager = ResourceManager()
+    # resource_manager = ResourceManager()
 
-    resource_manager.register_model(
-        ModelName.Whisper.value,
-        Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
-    )
+    # resource_manager.register_model(
+    #     ModelName.Whisper.value,
+    #     Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+    # )
 
-    resource_manager.register_model(
-        ModelName.Parseq.value,
-        Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
-    )
+    # resource_manager.register_model(
+    #     ModelName.Parseq.value,
+    #     Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+    # )
 
-    resource_manager.register_model(
-        ModelName.OPENCHAT.value,
-        Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
-    )
+    # resource_manager.register_model(
+    #     ModelName.OPENCHAT.value,
+    #     Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+    # )
 
-    resource_manager.register_model(
-        ModelName.CHATTTS.value,
-        Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
-    )
-    a = ModelName.CHATTTS
-    print(type(a))
-    print("test", resource_manager.models[a.value])
+    # resource_manager.register_model(
+    #     ModelName.CHATTTS.value,
+    #     Resource(use_cpu=True, use_gpu=False, use_multi_gpu_ids=[]),
+    # )
+    # a = ModelName.CHATTTS
+    # print(type(a))
+    # print("test", resource_manager.models[a.value])

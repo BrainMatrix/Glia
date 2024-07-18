@@ -18,6 +18,7 @@ class BaseWorkflow(object):
         service: BaseService = None,
         resource_manager: ResourceManager = None,
         prev_result: Any = None,
+        priority_factor: int = 100,
     ):
         self.name = name
         self.service = service
@@ -26,6 +27,13 @@ class BaseWorkflow(object):
 
         self.prev_result = prev_result  # pervious process result
         self.process_result = None  # current process result
+        self.priority_factor = priority_factor
+
+    def set_priority_factor(self, new_priority_factor):
+        self.priority_factor = new_priority_factor
+
+    def get_priority_factor(self):
+        return self.priority_factor
 
     def add_sub_workflow(self, *sub_workflows):
         for workflow in sub_workflows:
@@ -51,7 +59,7 @@ class BaseWorkflow(object):
         if self.service.call_model is not None:
             self.process_result = self.call_model(self.prev_result)
             print(
-                f"Executing workflow {self.name.value} with resources: {self.service.call_model_resources}"
+                f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}"
             )
             return self.process_result
 
@@ -60,10 +68,16 @@ class BaseWorkflow(object):
         resource_strategies = {}
         resource_strategies["Workflow_Name"] = self.name.value
 
-        if self.service is not None:
+        if self.service is not None :
             resource_strategies["Call_Resource"] = {}
-            for model_name, resource in self.service.call_model_resources.items():
-                resource_strategies["Call_Resource"][model_name] = resource.__str__()
+
+            print(
+                "self.service.call_model_resource",
+                type(self.service),
+            )
+            resource_strategies["Call_Resource"][
+                self.service.call_model_name
+            ] = self.service.call_model_resource.__str__()
 
             resource_strategies["Call_Model_Name"] = (
                 self.service.call_model_name if self.service.call_model_name else None

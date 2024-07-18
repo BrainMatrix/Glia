@@ -2,7 +2,7 @@ import asyncio
 
 from .base_workflow import BaseWorkflow
 from .workflow_name import WorkflowName
-from glia.src.model.model_name import ModelName
+from glia.src.model.model_registry import MODEL_REGISTRY
 from glia.src.service.speech_recognition_service import SpeechRecognitionService
 
 
@@ -13,7 +13,7 @@ class SpeechRecognitionWorkflow(BaseWorkflow):
         if self.service is None:
             self.service = SpeechRecognitionService(
                 name="SpeechRecognitionService",
-                call_model_name=ModelName.Whisper,
+                call_model_name="Whisper",
                 resource_manager=self.resource_manager,
             )
         else:
@@ -22,12 +22,12 @@ class SpeechRecognitionWorkflow(BaseWorkflow):
 
     async def execute(self):
         print(
-            f"Executing component {self.name.value} with resources: {self.service.call_model_resources}, start ..."
+            f"Executing component {self.name.value} with resources: {self.service.call_model_resource}, start ..."
         )
         await asyncio.sleep(1)
         self.process_result = await self.service(self.prev_result)
         print(self.process_result)
         print(
-            f"Executing component {self.name.value} with resources: {self.service.call_model_resources}"
+            f"Executing component {self.name.value} with resources: {self.service.call_model_resource}"
         )
         return self.process_result

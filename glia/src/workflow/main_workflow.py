@@ -8,7 +8,7 @@ import logging
 from enum import Enum
 
 from glia.src.resource import Resource
-from glia.src.model.model_name import ModelName
+from glia.src.model.model_registry import MODEL_REGISTRY
 from glia.src.workflow import BaseWorkflow
 from glia.src.resource import ResourceManager
 from glia.src.utils.model_utils import get_model_instance

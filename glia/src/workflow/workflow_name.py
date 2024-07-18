@@ -13,3 +13,4 @@ class WorkflowName(Enum):
     STRING_TOOLS = "StringTools"
     SPEECH_RECOGNITION = "SpeechRecognition"
     TEXT_TO_SPEECH = "TTS"
+    Monitor = "Monitor"
