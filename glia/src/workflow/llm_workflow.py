@@ -23,7 +23,7 @@ class LLMWorkflow(BaseWorkflow):
                 pass
 
     async def execute(self):
-
+        
         print(
             f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}, start ..."
         )

@@ -11,59 +11,83 @@ from glia.src.service.base_service import BaseService
 
 
 class BaseWorkflow(object):
-
+    """Workflow Base Class, containing only one service.
+    :param name: Workflow Name, defaults to None
+    :type name: Enum
+    :param service: Instance object of the BaseService, defaults to None
+    :type service: class:'BaseService'
+    :param resource_manager: Instance object of the ResourceManager, defaults to None
+    :type resource_manager: class:'ResourceManager'
+    :param priority_factor: Priority Level, defaults to 100
+    :type priority_factor: int
+    
+    """
     def __init__(
         self,
         name: Enum = None,
         service: BaseService = None,
         resource_manager: ResourceManager = None,
-        prev_result: Any = None,
         priority_factor: int = 100,
     ):
+        """Constructor method
+        """
         self.name = name
         self.service = service
         self.sub_workflows: Dict[Enum, BaseWorkflow] = {}
         self.resource_manager = resource_manager
 
-        self.prev_result = prev_result  # pervious process result
         self.process_result = None  # current process result
         self.priority_factor = priority_factor
 
     def set_priority_factor(self, new_priority_factor):
+        """Set the priority level of the workflow.
+        :param new_priority_factor: Priority Level
+        :type new_priority_factor: int
+        
+        """
         self.priority_factor = new_priority_factor
 
     def get_priority_factor(self):
+        """Get the priority level of the workflow.
+        :return: Current priority level of the workflow
+        :rtype: int
+        
+        """
         return self.priority_factor
 
     def add_sub_workflow(self, *sub_workflows):
+        """Add a new sub-workflow to the current workflow.
+        :param sub_workflows: One or more instances of `BaseWorkflow`
+        :type sub_workflows: class:'BaseWorkflow'
+        
+        """
         for workflow in sub_workflows:
             self.sub_workflows[workflow.name] = workflow
 
     async def __call__(self, prev_result):
-        # pass
-        # Executing workflow work
+        """Accept the result of the previous step, call `execute()` to run the workflow, and return the execution result.
+        :param prev_result: Result of the Previous Step
+        :type prev_result: Any
+        :return: Workflow Execution Result
+        :rtype: Any
+        
+        """
+    
         self.prev_result = prev_result
         self.process_result = await self.execute()
-        print("self.process_result", self.process_result)
-
-        await asyncio.gather(
-            *(
-                workflow(prev_result=self.process_result)
-                for workflow in self.sub_workflows.values()
-            )
-        )
         return self.process_result
 
     async def execute(self):
-        # pass
-        if self.service.call_model is not None:
-            self.process_result = self.call_model(self.prev_result)
-            print(
-                f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}"
-            )
-            return self.process_result
+        """Execute the Workflow
+        """
+        pass
+  
 
     def get_resource_strategy(self):
+        """Get all resource configurations of the current workflow and its sub-workflows, as well as their input data and output data.
+        :return: Record all resource configurations of the current workflow and its sub-workflows, as well as their input data and output data
+        :rtype: dict[str,Any]        
+        """
 
         resource_strategies = {}
         resource_strategies["Workflow_Name"] = self.name.value
@@ -96,6 +120,9 @@ class BaseWorkflow(object):
         return resource_strategies
 
     def print_resource_strategy(self):
+        """Print the resource strategy of the current workflow in a tree structure.        
+        """
+        
         resource_strategies = self.get_resource_strategy()
         console = Console()
 

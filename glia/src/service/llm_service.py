@@ -15,7 +15,6 @@ class LLMService(BaseService):
         )
         await asyncio.sleep(1)
         self.process_result = self.call_model(self.prev_result)
-        print("yrqyrq",self.process_result)
         print(
             f"Executing service {self.name} with resources: {self.call_model_resource}, end ..."
         )

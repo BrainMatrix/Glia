@@ -14,7 +14,6 @@ from glia.src.resource.resource import Resource
 from glia.src.resource.resource_manager import ResourceManager
 
 from glia.src.schedule import Schedule
-from Elderly_man_falls import monitor_fall
 from concurrent.futures import ThreadPoolExecutor
 
 import random

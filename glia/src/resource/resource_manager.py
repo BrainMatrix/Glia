@@ -9,22 +9,44 @@ from glia.src.model import MODEL_REGISTRY
 
 # 定义资源管理类
 class ResourceManager:
+    """ A resource manager that can allocate, record, view, and monitor resources.
+     
+    """ 
     def __init__(self):
+        """Constructor method
+        """
         self.models: Dict[str, Resource] = {}  # 存储模型资源需求
         self.allocated_resources: Dict[str, Resource] = {}  # 存储已分配的资源
         self.monitored_models: List[str] = []  # 存储需要监控的模型
 
     def register_model(self, model_name: str, resources: Resource):
+        """Register a model and its corresponding required resources into the dictionary `self.models` in the resource manager.
+        :param model_name: Model Name
+        :type model_name: str
+        :param resources: Resources Required by the Model
+        :type resources: class:'Resource'
+        
+        """
         self.models[model_name] = resources
         logging.info(f"Register model {model_name} with resources {resources}")
 
     def register_model_list(self, union_model_resources):
+        """Merge the dictionary formed by the model and its required resources into the `self.models` dictionary.
+        :param union_model_resources: The dictionary formed by the model and its required resources to be merged.
+        :type union_model_resources: dict[str, Resource]
+        
+        """
         for model_name, resources in union_model_resources.items():
             self.register_model(model_name, resources)
             # self.allocate_resources(model_name)
             logging.info(f"Register model {model_name} with resources {resources}")
 
     def allocate_resources(self, model_name: str):
+        """Allocate resources to a model in the `self.models` dictionary and record it in the `self.allocated_resources` dictionary that stores allocated resources.
+        :param model_name: Model Name
+        :type model_name: str
+        
+        """
         if model_name in self.models:
             self.allocated_resources[model_name] = self.models[model_name]
             logging.info(
@@ -34,6 +56,11 @@ class ResourceManager:
             logging.warning(f"Model {model_name} not found")
 
     def monitor_model(self, model_name: str):
+        """Track a specific model in the `self.models` dictionary and add it to the tracking list.
+        :param model_name: Model Name
+        :type model_name: str
+        
+        """
         if model_name in self.models:
             self.monitored_models.append(model_name)
             logging.info(f"Monitoring started for model {model_name}")
@@ -41,6 +68,13 @@ class ResourceManager:
             logging.warning(f"Model {model_name} not found")
 
     def adjust_resources(self, model_name: str, new_resources: Resource):
+        """Adjust resources for a model that has already been allocated resources.
+        :param model_name: Model Name
+        :type model_name: str
+        :param new_resources: Newly Allocated Resources
+        :type new_resources: class:'Resource'
+        
+        """
         if model_name in self.allocated_resources:
             self.allocated_resources[model_name] = new_resources
             logging.info(
@@ -50,9 +84,23 @@ class ResourceManager:
             logging.warning(f"Model {model_name} not found or not allocated")
 
     def set_security_policy(self, model_name: str, policy: str):
+        """Write the security policy of the model into the info log.
+        :param model_name: Model Name
+        :type model_name: str
+        :param policy: Security Policy of the Model
+        :type policy: str
+        
+        """
         logging.info(f"Set security policy for model {model_name}: {policy}")
 
     def set_permissions(self, model_name: str, permissions: List[str]):
+        """Write the permissions of the model into the info log.
+        :param model_name: Model Name
+        :type model_name: str
+        :param permissions: Permissions of the Model
+        :type permissions: list[str]
+        
+        """
         logging.info(f"Set permissions for model {model_name}: {permissions}")
 
     def log_resources(self):

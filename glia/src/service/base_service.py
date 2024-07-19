@@ -13,14 +13,25 @@ from glia.src.model.base_model import BaseModel
 
 
 class BaseService(object):
+    """Service Base Class
+    :param name: Name of the Service, defaults to None
+    :type name: Enum
+    :param call_model_name: Name of the Called Model, defaults to None
+    :type call_model_name: str
+    :param resource_manager: Instance object of the ResourceManager, defaults to None
+    :type resource_manager: class:'ResourceManager'
+    
+    """
 
     def __init__(
         self,
         name: Enum = None,
         call_model_name: str = None,
         resource_manager: ResourceManager = None,
-        prev_result: Any = None,
+       
     ):
+        """Constructor method
+        """
         self.name = name
 
         self.call_model_name: str = call_model_name
@@ -32,10 +43,15 @@ class BaseService(object):
         if call_model_name is not None and resource_manager is not None:
             self.setup(self.call_model, self.call_model_resource)
 
-        self.prev_result = prev_result  # pervious process result
         self.process_result = None  # current process result
 
     def setup(self, model: BaseModel = None, resources: Resource = None):
+        """Set resource allocation 
+        :param model: Instance object of the BaseModel, defaults to None
+        :type model: class:'BaseModel'
+        :param resources: Instance object of the Resource, defaults to None
+        :type resources: class:'Resource'
+        """
         # Set resource allocation here
         # if  isinstance(self.call_model, str) and self.call_model is not None:
         #     self.call_model = get_model_instance(self.call_model)
@@ -53,6 +69,12 @@ class BaseService(object):
             print("Error in setting up resources", "Error:", e, "id(self):", id(self))
 
     async def __call__(self, prev_result):
+        """Accept the result of the previous step, call `execute()` to run the service, and return the execution result.        
+        :param prev_result: Result of the Previous Step
+        :type prev_result: Any
+        :return: Service Execution Result
+        :rtype: Any
+        """
 
         # check resource allocation
         # assert self.call_model_resources is not None, "Resource not allocated"
@@ -63,10 +85,15 @@ class BaseService(object):
         return self.process_result
 
     async def execute(self):
-
-        if self.call_model is not None:
-            self.process_result = self.call_model(self.prev_result)
-            print(
-                f"Executing workflow {self.name.value} with resources: {self.call_model_resources}"
-            )
-            return self.process_result
+        pass
+        # """实例化一个Model模型,执行service,返回执行结果
+          
+        # :return: service 执行结果
+        # :rtype: 任意类型
+        # """
+        # if self.call_model is not None:
+        #     self.process_result = self.call_model(self.prev_result)
+        #     print(
+        #         f"Executing service {self.name} with resources: {self.call_model_resource}"
+        #     )
+        #     return self.process_result

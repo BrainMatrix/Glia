@@ -3,6 +3,20 @@ from enum import Enum
 
 
 class WorkflowName(Enum):
+    """The `WorkflowName` enum class defines various workflow names.
+    :cvar MAIN: Main Workflow, value is "Main"
+    :cvar SUB_1: Sub Workflow 1, value is "Sub1"
+    :cvar SUB_2: Sub Workflow 2, value is "Sub2"
+    :cvar SUB_3: Sub Workflow 3, value is "Sub3"
+    :cvar SUB_1_1: The sub-workflow of Sub Workflow 1, value is "Sub11"
+    :cvar OCR: OCR Workflow, value is "OCR"
+    :cvar LLM: LLM Workflow, value is "LLM"
+    :cvar STRING_TOOLS: String Tools Workflow, value is "StringTools"
+    :cvar SPEECH_RECOGNITION: Speech Recognition Workflow, value is "SpeechRecognition"
+    :cvar TEXT_TO_SPEECH: Text to Speech Workflow, value is "TTS"
+    :cvar Monitor: Monitor Workflow, value is "Monitor"
+    
+    """
     MAIN = "Main"
     SUB_1 = "Sub1"
     SUB_2 = "Sub2"

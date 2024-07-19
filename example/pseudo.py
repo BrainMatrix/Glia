@@ -17,30 +17,33 @@ from glia.src.resource.resource import Resource
 from glia.src.resource.resource_manager import ResourceManager
 
 from glia.src.schedule import Schedule
-from Elderly_man_falls import monitor_fall
 from concurrent.futures import ThreadPoolExecutor
 from monitor_man_falls_workflow import monitor_man_falls_workflow
 
 
 class TestAIWorkflow(BaseWorkflow):
-    """
-
-    Some Fancy AI algorithm. We get an input image and a question, output some result.
-
+    """This is a complete AI algorithm workflow composed of multiple workflows that can achieve speech recognition -> LLM -> speech synthesis.
+    
+    :param name: The name of the workflow to which the algorithm belongs, defaults to None
+    :type name: Enum
+    :param resource_manager: Instance object of the ResourceManager, defaults to None
+    :type resource_manager: class:'ResourceManager'
+    :param schedule: Priority of the workflow.
+    :type schedule: class:'Schedule'
+    
     """
 
     def __init__(
         self,
         name: Enum = None,
         resource_manager: ResourceManager = None,
-        prev_result: Any = None,
         schedule: Schedule = None,
     ):
-
+        """Constructor method
+        """
         super().__init__(
             name=name,
             resource_manager=resource_manager,
-            prev_result=prev_result,
         )
         self.resource_manager = resource_manager
         self.llm_agent_workflow = LLMWorkflow(
@@ -61,13 +64,26 @@ class TestAIWorkflow(BaseWorkflow):
         )
 
     async def __call__(self, input):
+        """Accept input, call the 'run' method to asynchronously run the entire algorithm workflow, and return the final result.
+
+        :param input: Input
+        :type input: Any
+        :return: The final execution result of the workflow.
+        :rtype: Any
+        
+        """      
         self.prev_result = input
         await self.run(self.prev_result)
 
         return self.process_result
 
     async def run(self, input):
-
+        """Utilize user input to fully run the complete workflow of speech recognition -> LLM -> speech synthesis, and record the computation results.
+        
+        :param input: Input
+        :type input: Any       
+        
+        """  
         # while not self.schedule.control_event.is_set():
         preprocessed_str = await self.sr_workflow(input)
         llm_output = await self.llm_agent_workflow(preprocessed_str)
@@ -77,6 +93,7 @@ class TestAIWorkflow(BaseWorkflow):
 
 
 def run_asyncio_in_thread(loop, workflow, *args):
+    
     asyncio.set_event_loop(loop)
     try:
         result = loop.run_until_complete(workflow(*args))
