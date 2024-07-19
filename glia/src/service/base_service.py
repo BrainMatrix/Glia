@@ -14,6 +14,7 @@ from glia.src.model.base_model import BaseModel
 
 class BaseService(object):
     """Service Base Class
+    
     :param name: Name of the Service, defaults to None
     :type name: Enum
     :param call_model_name: Name of the Called Model, defaults to None
@@ -30,7 +31,9 @@ class BaseService(object):
         resource_manager: ResourceManager = None,
        
     ):
-        """Constructor method
+        """
+        Constructor method
+        
         """
         self.name = name
 
@@ -47,10 +50,12 @@ class BaseService(object):
 
     def setup(self, model: BaseModel = None, resources: Resource = None):
         """Set resource allocation 
+        
         :param model: Instance object of the BaseModel, defaults to None
         :type model: class:'BaseModel'
         :param resources: Instance object of the Resource, defaults to None
         :type resources: class:'Resource'
+        
         """
         # Set resource allocation here
         # if  isinstance(self.call_model, str) and self.call_model is not None:
@@ -67,9 +72,14 @@ class BaseService(object):
             print(type(model))
             print(type(resources))
             print("Error in setting up resources", "Error:", e, "id(self):", id(self))
+            
+            
+            
 
     async def __call__(self, prev_result):
-        """Accept the result of the previous step, call `execute()` to run the service, and return the execution result.        
+        """
+        Accept the result of the previous step, call `execute()` to run the service, and return the execution result
+              
         :param prev_result: Result of the Previous Step
         :type prev_result: Any
         :return: Service Execution Result

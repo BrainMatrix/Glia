@@ -12,6 +12,7 @@ from glia.src.service.base_service import BaseService
 
 class BaseWorkflow(object):
     """Workflow Base Class, containing only one service.
+    
     :param name: Workflow Name, defaults to None
     :type name: Enum
     :param service: Instance object of the BaseService, defaults to None
@@ -30,6 +31,7 @@ class BaseWorkflow(object):
         priority_factor: int = 100,
     ):
         """Constructor method
+        
         """
         self.name = name
         self.service = service
@@ -41,6 +43,7 @@ class BaseWorkflow(object):
 
     def set_priority_factor(self, new_priority_factor):
         """Set the priority level of the workflow.
+        
         :param new_priority_factor: Priority Level
         :type new_priority_factor: int
         
@@ -49,6 +52,7 @@ class BaseWorkflow(object):
 
     def get_priority_factor(self):
         """Get the priority level of the workflow.
+        
         :return: Current priority level of the workflow
         :rtype: int
         
@@ -57,6 +61,7 @@ class BaseWorkflow(object):
 
     def add_sub_workflow(self, *sub_workflows):
         """Add a new sub-workflow to the current workflow.
+        
         :param sub_workflows: One or more instances of `BaseWorkflow`
         :type sub_workflows: class:'BaseWorkflow'
         
@@ -66,6 +71,7 @@ class BaseWorkflow(object):
 
     async def __call__(self, prev_result):
         """Accept the result of the previous step, call `execute()` to run the workflow, and return the execution result.
+        
         :param prev_result: Result of the Previous Step
         :type prev_result: Any
         :return: Workflow Execution Result
@@ -79,12 +85,14 @@ class BaseWorkflow(object):
 
     async def execute(self):
         """Execute the Workflow
+        
         """
         pass
   
 
     def get_resource_strategy(self):
         """Get all resource configurations of the current workflow and its sub-workflows, as well as their input data and output data.
+        
         :return: Record all resource configurations of the current workflow and its sub-workflows, as well as their input data and output data
         :rtype: dict[str,Any]        
         """
@@ -120,7 +128,8 @@ class BaseWorkflow(object):
         return resource_strategies
 
     def print_resource_strategy(self):
-        """Print the resource strategy of the current workflow in a tree structure.        
+        """Print the resource strategy of the current workflow in a tree structure.  
+              
         """
         
         resource_strategies = self.get_resource_strategy()

@@ -40,6 +40,7 @@ class TestAIWorkflow(BaseWorkflow):
         schedule: Schedule = None,
     ):
         """Constructor method
+        
         """
         super().__init__(
             name=name,

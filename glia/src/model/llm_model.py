@@ -6,9 +6,11 @@ from PIL import Image
 
 class LLMModel(BaseModel):
     """LLM Model Class    
+    
     """
     def __init__(self, tesseract_cmd=None):
         """Constructor method
+        
         """
         # init_model
         self.name = "llm"
