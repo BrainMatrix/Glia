@@ -8,6 +8,9 @@ from glia.src.service.llm_service import LLMService
 
 
 class LLMWorkflow(BaseWorkflow):
+    """LLMWorkflow Class
+    
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -23,6 +26,12 @@ class LLMWorkflow(BaseWorkflow):
                 pass
 
     async def execute(self):
+        """Call the service to execute the current workflow and return the final result
+        
+        :return: The execution result of the current workflow
+        :rtype: Any
+        
+        """
         
         print(
             f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}, start ..."

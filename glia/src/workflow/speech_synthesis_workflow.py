@@ -5,6 +5,9 @@ from glia.src.model.model_registry import MODEL_REGISTRY
 from glia.src.service.speech_synthesis_service import SpeechSynthesisService
 
 class SpeechSynthesisWorkflow(BaseWorkflow):
+    """SpeechSynthesisWorkflow Class
+    
+    """
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -20,6 +23,12 @@ class SpeechSynthesisWorkflow(BaseWorkflow):
                 pass
 
     async def execute(self):
+        """Call the service to execute the current workflow and return the final result
+        
+        :return: The execution result of the current workflow
+        :rtype: Any
+        
+        """
 
         print(
             f"Executing component {self.name.value} with resources: {self.service.call_model_resource}, start ..."

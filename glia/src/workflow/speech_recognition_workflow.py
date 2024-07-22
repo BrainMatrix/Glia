@@ -7,6 +7,9 @@ from glia.src.service.speech_recognition_service import SpeechRecognitionService
 
 
 class SpeechRecognitionWorkflow(BaseWorkflow):
+    """SpeechRecognitionWorkflow Class
+    
+    """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.resource_manager = self.resource_manager
@@ -21,6 +24,12 @@ class SpeechRecognitionWorkflow(BaseWorkflow):
                 pass
 
     async def execute(self):
+        """Call the service to execute the current workflow and return the final result
+        
+        :return: The execution result of the current workflow
+        :rtype: Any
+        
+        """
         print(
             f"Executing component {self.name.value} with resources: {self.service.call_model_resource}, start ..."
         )
