@@ -1,27 +1,27 @@
-src.resource package
+Resource
 ====================
 
-Submodules
-----------
+*Submodules*
+--------------
 
-src.resource.resource module
-----------------------------
+*resource module*
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.resource.resource
    :members:
    :undoc-members:
    :show-inheritance:
 
-src.resource.resource\_manager module
--------------------------------------
+*resource\_manager module*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.resource.resource_manager
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+*Module contents*
+--------------------
 
 .. automodule:: src.resource
    :members:

@@ -1,59 +1,67 @@
-src.model package
+Model
 =================
 
-Submodules
-----------
+*Submodules*
+--------------
 
-src.model.base\_model module
-----------------------------
+*base\_model module* 
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: src.model.base_model
+.. currentmodule:: src.model.base_model
+
+.. autoclass:: BaseModel
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-src.model.llm\_model module
----------------------------
+*llm\_model module* 
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.model.llm_model
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-src.model.model\_registry module
---------------------------------
+*model\_registry module* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.model.model_registry
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-src.model.ocr\_model module
----------------------------
+*ocr\_model module* 
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.model.ocr_model
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-src.model.sr\_model module
---------------------------
+*sr\_model module*
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.model.sr_model
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-src.model.tts\_model module
----------------------------
+*tts\_model module* 
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.model.tts_model
    :members:
    :undoc-members:
    :show-inheritance:
+   :noindex:
 
-Module contents
----------------
+*Module contents*
+--------------------
 
 .. automodule:: src.model
    :members:

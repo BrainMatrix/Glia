@@ -3,25 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-make documentation
-==================
+AI Framework Architecture Code Documentation
+=================================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+*This AI framework is:*
 
+  * An open-source framework
+  * Aiming to achieve the level of AIOS, i.e., a system with AI as the core resource
+  * Facilitating the writing of various algorithms based on LLM
+  * Debuggable, deployable, and with traceable history
+  * Currently focused on single-machine scale, supporting 1 GPU, 2 GPUs, and 8 GPUs
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   src.model
-   src.resource
-   src.schedule
-   src.service
-   src.utils
-   src.workflow
-
+   modules
+   
 
 
 Indices and tables

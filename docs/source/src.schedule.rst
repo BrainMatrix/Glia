@@ -1,19 +1,19 @@
-src.schedule package
+Schedule
 ====================
 
-Submodules
-----------
+*Submodules*
+--------------
 
-src.schedule.schedule module
-----------------------------
+*schedule module*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. automodule:: src.schedule.schedule
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+*Module contents*
+---------------------
 
 .. automodule:: src.schedule
    :members:

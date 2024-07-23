@@ -1,23 +1,16 @@
-src package
+Src
 ===========
-
-Subpackages
------------
 
 .. toctree::
    :maxdepth: 4
+   :caption: Contents:
 
    src.model
+   src.service
+   src.workflow
    src.resource
    src.schedule
-   src.service
    src.utils
-   src.workflow
+  
 
-Module contents
----------------
 
-.. automodule:: src
-   :members:
-   :undoc-members:
-   :show-inheritance:
