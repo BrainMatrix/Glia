@@ -14,6 +14,7 @@ class ResourceManager:
     """ 
     def __init__(self):
         """Constructor method
+        
         """
         self.models: Dict[str, Resource] = {}  # 存储模型资源需求
         self.allocated_resources: Dict[str, Resource] = {}  # 存储已分配的资源
@@ -21,6 +22,7 @@ class ResourceManager:
 
     def register_model(self, model_name: str, resources: Resource):
         """Register a model and its corresponding required resources into the dictionary `self.models` in the resource manager.
+        
         :param model_name: Model Name
         :type model_name: str
         :param resources: Resources Required by the Model
@@ -32,6 +34,7 @@ class ResourceManager:
 
     def register_model_list(self, union_model_resources):
         """Merge the dictionary formed by the model and its required resources into the `self.models` dictionary.
+        
         :param union_model_resources: The dictionary formed by the model and its required resources to be merged.
         :type union_model_resources: dict[str, Resource]
         
@@ -43,6 +46,7 @@ class ResourceManager:
 
     def allocate_resources(self, model_name: str):
         """Allocate resources to a model in the `self.models` dictionary and record it in the `self.allocated_resources` dictionary that stores allocated resources.
+        
         :param model_name: Model Name
         :type model_name: str
         
@@ -57,6 +61,7 @@ class ResourceManager:
 
     def monitor_model(self, model_name: str):
         """Track a specific model in the `self.models` dictionary and add it to the tracking list.
+        
         :param model_name: Model Name
         :type model_name: str
         
@@ -69,6 +74,7 @@ class ResourceManager:
 
     def adjust_resources(self, model_name: str, new_resources: Resource):
         """Adjust resources for a model that has already been allocated resources.
+        
         :param model_name: Model Name
         :type model_name: str
         :param new_resources: Newly Allocated Resources
@@ -85,6 +91,7 @@ class ResourceManager:
 
     def set_security_policy(self, model_name: str, policy: str):
         """Write the security policy of the model into the info log.
+        
         :param model_name: Model Name
         :type model_name: str
         :param policy: Security Policy of the Model
@@ -95,6 +102,7 @@ class ResourceManager:
 
     def set_permissions(self, model_name: str, permissions: List[str]):
         """Write the permissions of the model into the info log.
+        
         :param model_name: Model Name
         :type model_name: str
         :param permissions: Permissions of the Model

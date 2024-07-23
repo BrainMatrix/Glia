@@ -5,6 +5,7 @@ from PIL import Image
 
 class SRModel(BaseModel):
     """SR Model Class
+    
     """
     def __init__(
         self,
@@ -12,6 +13,7 @@ class SRModel(BaseModel):
         **kwargs,
     ):
         """Constructor method
+        
         """
         # init_model
         self.name = "SRModel"

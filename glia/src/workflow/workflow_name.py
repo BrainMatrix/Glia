@@ -4,6 +4,7 @@ from enum import Enum
 
 class WorkflowName(Enum):
     """The `WorkflowName` enum class defines various workflow names.
+    
     :cvar MAIN: Main Workflow, value is "Main"
     :cvar SUB_1: Sub Workflow 1, value is "Sub1"
     :cvar SUB_2: Sub Workflow 2, value is "Sub2"

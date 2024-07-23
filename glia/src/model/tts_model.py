@@ -14,6 +14,7 @@ class TTSModel(BaseModel):
         **kwargs,
     ):
         """Constructor method
+        
         """
         # init_model
         self.name = "tts"
