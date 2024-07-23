@@ -1,6 +1,25 @@
-##  (2024-07-18)
+##  (2024-07-23)
+
+* ✨ feat: merge branches ([c36fdb1](https://github.com/BrainMatrix/Glia/commit/c36fdb1))
+* ✨ feat: merge branches ([76dd963](https://github.com/BrainMatrix/Glia/commit/76dd963))
+* 🐛 fix: 格式的修改 ([2699dc1](https://github.com/BrainMatrix/Glia/commit/2699dc1))
+* 📝 docs: 添加schedule说明文档 ([126677c](https://github.com/BrainMatrix/Glia/commit/126677c))
+* 🔖 tag(package.json): v1.1.1 ([1e51509](https://github.com/BrainMatrix/Glia/commit/1e51509))
+
+
+
+## 1.1.0 (2024-07-23)
+
+* 📝 docs: 添加接口文档 ([87eaa07](https://github.com/BrainMatrix/Glia/commit/87eaa07))
+* 📝 docs(CHANGELOG.md): automatic update ([b586554](https://github.com/BrainMatrix/Glia/commit/b586554))
+* 🔖 tag(package.json): v1.1.0 ([be41487](https://github.com/BrainMatrix/Glia/commit/be41487))
+
+
+
+## <small>1.0.9 (2024-07-18)</small>
 
 * ✨ feat(add monitor elderly man falls workflow): ([40958c0](https://github.com/BrainMatrix/Glia/commit/40958c0))
+* 📝 docs(CHANGELOG.md): automatic update ([2e11a8f](https://github.com/BrainMatrix/Glia/commit/2e11a8f))
 * 🔖 tag(package.json): v1.0.9 ([9cec5a8](https://github.com/BrainMatrix/Glia/commit/9cec5a8))
 
 
