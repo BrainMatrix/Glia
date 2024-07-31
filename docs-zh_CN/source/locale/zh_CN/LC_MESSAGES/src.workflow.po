@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, heitong
+# This file is distributed under the same license as the sphinx test
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: sphinx test \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-23 17:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: ../src.workflow.rst:2
+msgid "src.workflow package"
+msgstr ""
+
+#: ../src.workflow.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../src.workflow.rst:8
+msgid "src.workflow.base\\_workflow module"
+msgstr ""
+
+#: of src.workflow.base_workflow.BaseWorkflow:1
+msgid "基类：:py:class:`object`"
+msgstr ""
+
+#: of src.workflow.base_workflow.BaseWorkflow:1
+msgid "Workflow Base Class, containing only one service."
+msgstr "工作流基类，仅包含一个服务。"
+
+#: of src.workflow.base_workflow.BaseWorkflow
+#: src.workflow.base_workflow.BaseWorkflow.add_sub_workflow
+#: src.workflow.base_workflow.BaseWorkflow.set_priority_factor
+msgid "参数"
+msgstr ""
+
+#: of src.workflow.base_workflow.BaseWorkflow:3
+msgid "Workflow Name, defaults to None"
+msgstr "工作流名称，默认为无"
+
+#: of src.workflow.base_workflow.BaseWorkflow:5
+msgid "Instance object of the BaseService, defaults to None"
+msgstr "BaseService 实例对象，默认为 None"
+
+#: of src.workflow.base_workflow.BaseWorkflow:7
+msgid "Instance object of the ResourceManager, defaults to None"
+msgstr "`ResourceManager` 实例对象，默认为 `None`。"
+
+#: of src.workflow.base_workflow.BaseWorkflow:9
+msgid "Priority Level, defaults to 100"
+msgstr "优先级，默认设置为100"
+
+#: of src.workflow.base_workflow.BaseWorkflow.add_sub_workflow:1
+msgid "Add a new sub-workflow to the current workflow."
+msgstr "在当前工作流程中添加一个新的子流程。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.add_sub_workflow:3
+msgid "One or more instances of `BaseWorkflow`"
+msgstr "一个或多个 `BaseWorkflow` 实例"
+
+#: of src.workflow.base_workflow.BaseWorkflow.execute:1
+#: src.workflow.llm_workflow.LLMWorkflow.execute:1
+#: src.workflow.ocr_workflow.OCRWorkflow.execute:1
+#: src.workflow.speech_recognition_workflow.SpeechRecognitionWorkflow.execute:1
+#: src.workflow.speech_synthesis_workflow.SpeechSynthesisWorkflow.execute:1
+#: src.workflow.string_tools_workflow.StringToolsWorkflow.execute:1
+msgid "Execute the Workflow"
+msgstr "执行工作流程"
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_priority_factor:1
+msgid "Get the priority level of the workflow."
+msgstr "获取工作流的优先级。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_priority_factor
+#: src.workflow.base_workflow.BaseWorkflow.get_resource_strategy
+msgid "返回"
+msgstr ""
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_priority_factor:3
+msgid "Current priority level of the workflow"
+msgstr "当前工作流程的优先级"
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_priority_factor
+#: src.workflow.base_workflow.BaseWorkflow.get_resource_strategy
+msgid "返回类型"
+msgstr ""
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_resource_strategy:1
+msgid ""
+"Get all resource configurations of the current workflow and its sub-"
+"workflows, as well as their input data and output data."
+msgstr "获取当前工作流及其所有子工作流的所有资源配置，以及它们的输入数据和输出数据。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.get_resource_strategy:3
+msgid ""
+"Record all resource configurations of the current workflow and its sub-"
+"workflows, as well as their input data and output data"
+msgstr "记录当前工作流及其子工作流的所有资源配置，以及它们的输入数据和输出数据。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.print_resource_strategy:1
+msgid "Print the resource strategy of the current workflow in a tree structure."
+msgstr "打印当前工作流的资源策略，以树状结构展示。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.set_priority_factor:1
+msgid "Set the priority level of the workflow."
+msgstr "设置工作流程的优先级。"
+
+#: of src.workflow.base_workflow.BaseWorkflow.set_priority_factor:3
+msgid "Priority Level"
+msgstr "优先级"
+
+#: ../src.workflow.rst:16
+msgid "src.workflow.llm\\_workflow module"
+msgstr ""
+
+#: of src.workflow.llm_workflow.LLMWorkflow:1
+#: src.workflow.ocr_workflow.OCRWorkflow:1
+#: src.workflow.speech_recognition_workflow.SpeechRecognitionWorkflow:1
+#: src.workflow.speech_synthesis_workflow.SpeechSynthesisWorkflow:1
+#: src.workflow.string_tools_workflow.StringToolsWorkflow:1
+msgid "基类：:py:class:`~src.workflow.base_workflow.BaseWorkflow`"
+msgstr ""
+
+#: ../src.workflow.rst:24
+msgid "src.workflow.main\\_workflow module"
+msgstr ""
+
+#: of src.workflow.main_workflow.MainWorkflow:1
+msgid "基类：:py:class:`~glia.src.workflow.base_workflow.BaseWorkflow`"
+msgstr ""
+
+#: ../src.workflow.rst:32
+msgid "src.workflow.ocr\\_workflow module"
+msgstr ""
+
+#: ../src.workflow.rst:40
+msgid "src.workflow.speech\\_recognition\\_workflow module"
+msgstr ""
+
+#: ../src.workflow.rst:48
+msgid "src.workflow.speech\\_synthesis\\_workflow module"
+msgstr ""
+
+#: ../src.workflow.rst:56
+msgid "src.workflow.string\\_tools\\_workflow module"
+msgstr ""
+
+#: ../src.workflow.rst:64
+msgid "src.workflow.workflow\\_name module"
+msgstr ""
+
+#: of src.workflow.workflow_name.WorkflowName:1
+msgid "基类：:py:class:`~enum.Enum`"
+msgstr ""
+
+#: of src.workflow.workflow_name.WorkflowName:1
+msgid "The `WorkflowName` enum class defines various workflow names."
+msgstr "`WorkflowName` 枚举类定义了多种工作流名称。"
+
+#: of src.workflow.workflow_name.WorkflowName
+msgid "变量"
+msgstr ""
+
+#: of src.workflow.workflow_name.WorkflowName:3
+msgid "Main Workflow, value is \"Main\""
+msgstr "主要工作流程，值为 \"
+
+#: of src.workflow.workflow_name.WorkflowName:4
+msgid "Sub Workflow 1, value is \"Sub1\""
+msgstr "在子工作流程1中，值为\"
+
+#: of src.workflow.workflow_name.WorkflowName:5
+msgid "Sub Workflow 2, value is \"Sub2\""
+msgstr "在子工作流2中，值为\"
+
+#: of src.workflow.workflow_name.WorkflowName:6
+msgid "Sub Workflow 3, value is \"Sub3\""
+msgstr "在子工作流程3中，值为\"
+
+#: of src.workflow.workflow_name.WorkflowName:7
+msgid "The sub-workflow of Sub Workflow 1, value is \"Sub11\""
+msgstr "子工作流1的子流程，值为\"
+
+#: of src.workflow.workflow_name.WorkflowName:8
+msgid "OCR Workflow, value is \"OCR\""
+msgstr "OCR 工作流程，价值在于："
+
+#: of src.workflow.workflow_name.WorkflowName:9
+msgid "LLM Workflow, value is \"LLM\""
+msgstr "LLM工作流程中，值为\"
+
+#: of src.workflow.workflow_name.WorkflowName:10
+msgid "String Tools Workflow, value is \"StringTools\""
+msgstr "字符串工具工作流程，值为 \"
+
+#: of src.workflow.workflow_name.WorkflowName:11
+msgid "Speech Recognition Workflow, value is \"SpeechRecognition\""
+msgstr "语音识别工作流程，价值在于"
+
+#: of src.workflow.workflow_name.WorkflowName:12
+msgid "Text to Speech Workflow, value is \"TTS\""
+msgstr "文本转语音工作流程，价值为 \"
+
+#: of src.workflow.workflow_name.WorkflowName:13
+msgid "Monitor Workflow, value is \"Monitor\""
+msgstr "监控工作流程，值为 \"
+
+#: ../src.workflow.rst:72
+msgid "Module contents"
+msgstr "模块内容"
+

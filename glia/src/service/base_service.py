@@ -14,14 +14,14 @@ from glia.src.model.base_model import BaseModel
 
 class BaseService(object):
     """Service Base Class
-    
+
     :param name: Name of the Service, defaults to None
     :type name: Enum
     :param call_model_name: Name of the Called Model, defaults to None
     :type call_model_name: str
     :param resource_manager: Instance object of the ResourceManager, defaults to None
     :type resource_manager: class:'ResourceManager'
-    
+
     """
 
     def __init__(
@@ -29,16 +29,16 @@ class BaseService(object):
         name: Enum = None,
         call_model_name: str = None,
         resource_manager: ResourceManager = None,
-       
+        loop=asyncio.new_event_loop(),
     ):
         """
         Constructor method
-        
+
         """
         self.name = name
 
         self.call_model_name: str = call_model_name
-        self.call_model: BaseModel = MODEL_REGISTRY[call_model_name]()
+        self.call_model: BaseModel = MODEL_REGISTRY[call_model_name]
         self.resource_manager: ResourceManager = resource_manager
         self.call_model_resource: Resource = self.resource_manager.models[
             self.call_model_name
@@ -47,15 +47,16 @@ class BaseService(object):
             self.setup(self.call_model, self.call_model_resource)
 
         self.process_result = None  # current process result
+        self.loop = loop
 
     def setup(self, model: BaseModel = None, resources: Resource = None):
-        """Set resource allocation 
-        
+        """Set resource allocation
+
         :param model: Instance object of the BaseModel, defaults to None
         :type model: class:'BaseModel'
         :param resources: Instance object of the Resource, defaults to None
         :type resources: class:'Resource'
-        
+
         """
         # Set resource allocation here
         # if  isinstance(self.call_model, str) and self.call_model is not None:
@@ -63,6 +64,20 @@ class BaseService(object):
 
         # self.model.to("deivce")
         try:
+            if (
+                self.call_model_name
+                not in self.resource_manager.allocated_models.keys()
+            ):
+                self.call_model = self.call_model()  # 实例化模型
+                print("实例化", self.call_model_resource, self.call_model)
+                self.resource_manager.allocated_models[self.call_model_name] = (
+                    self.call_model
+                )
+            else:
+                self.call_model = self.resource_manager.allocated_models[
+                    self.call_model_name
+                ]
+                print("已经示例化过了", self.call_model_resource, self.call_model)
             pass
             # if model is not None:
         #         self.call_model_resources[model] = resources
@@ -72,14 +87,11 @@ class BaseService(object):
             print(type(model))
             print(type(resources))
             print("Error in setting up resources", "Error:", e, "id(self):", id(self))
-            
-            
-            
 
-    async def __call__(self, prev_result):
+    def __call__(self, prev_result):
         """
         Accept the result of the previous step, call `execute()` to run the service, and return the execution result
-              
+
         :param prev_result: Result of the Previous Step
         :type prev_result: Any
         :return: Service Execution Result
@@ -91,13 +103,13 @@ class BaseService(object):
 
         # Executing workflow work
         self.prev_result = prev_result
-        self.process_result = await self.execute()
+        self.process_result = self.execute()
         return self.process_result
 
-    async def execute(self):
+    def execute(self):
         pass
         # """实例化一个Model模型,执行service,返回执行结果
-          
+
         # :return: service 执行结果
         # :rtype: 任意类型
         # """

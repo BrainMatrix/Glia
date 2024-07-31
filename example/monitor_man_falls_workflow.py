@@ -32,18 +32,21 @@ class monitor_man_falls_workflow(BaseWorkflow):
         resource_manager: ResourceManager = None,
         prev_result: Any = None,
         schedule: Schedule = None,
+        loop=asyncio.new_event_loop(),
     ):
 
         super().__init__(name, resource_manager, prev_result, schedule)
         self.resource_manager = resource_manager
 
         self.schedule = schedule
+        self.loop = loop
 
     # 假设这是获取传感器数据的异步函数
-    async def get_sensor_data(
+    def get_sensor_data(
         self,
     ):
-        await asyncio.sleep(0.1)  # 模拟异步操作
+        # await asyncio.sleep(0.1)  # 模拟异步操作
+        time.sleep(1)  # 模拟传感器数据采集
         return random.uniform(0, 1)
 
     # 异步摔倒处理逻辑
@@ -51,26 +54,26 @@ class monitor_man_falls_workflow(BaseWorkflow):
         self,
     ):
         print("处理摔倒逻辑...")
-        await asyncio.sleep(1)  # 模拟异步处理过程
+        await asyncio.sleep(10)  # 模拟异步处理过程
         print("摔倒逻辑处理完毕")
 
-    async def __call__(self, input):
+    def __call__(self, input):
         self.prev_result = input
-        await self.run(self.prev_result)
+        self.run(self.prev_result)
 
         return self.process_result
 
     # 异步监控摔倒的函数
-    async def run(
+    def run(
         self,
         input,
     ):
         while not self.schedule.control_event.is_set():
-            data = await self.get_sensor_data()
+            data = self.get_sensor_data()
             if data < 0.5:
                 print("警报：老人摔倒了！")
-                self.schedule.control_event.set()  # 设置事件，通知其他线程停止
-                await self.handle_fall()  # 处理摔倒逻辑
-                self.schedule.control_event.clear()  # 清除事件，允许其他线程继续
+                # self.schedule.control_event.set()  # 设置事件，通知其他线程停止
+                self.loop.run_until_complete(self.handle_fall())  # 处理摔倒逻辑
+                # self.schedule.control_event.clear()  # 清除事件，允许其他线程继续
                 return
-            await asyncio.sleep(1)
+            time.sleep(1)

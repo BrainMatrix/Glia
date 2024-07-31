@@ -2,6 +2,7 @@ from .base_model import BaseModel
 
 from PIL import Image
 
+import asyncio
 
 class SRModel(BaseModel):
     """SR Model Class
@@ -19,8 +20,9 @@ class SRModel(BaseModel):
         self.name = "SRModel"
         pass
 
-    def __call__(self, data):
-     
+    async def __call__(self, data):
+
+        await asyncio.sleep(1)
         text = (
             data + ",我是sr返回的结果"
             if data is not None

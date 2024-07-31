@@ -1,6 +1,5 @@
 # Copyright (c) BrainMatrix. All rights reserved.
 from .base_workflow import BaseWorkflow
-from .main_workflow import MainWorkflow
 from .workflow_name import WorkflowName
 
 from .speech_recognition_workflow import SpeechRecognitionWorkflow

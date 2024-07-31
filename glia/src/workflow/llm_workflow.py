@@ -15,20 +15,22 @@ class LLMWorkflow(BaseWorkflow):
         if self.service is None:
             self.service = LLMService(
                 name="LLMService",
-                call_model_name='OPENCHAT',
+                call_model_name="OPENCHAT",
                 resource_manager=self.resource_manager,
+                loop=self.loop,
+
             )
         else:
-            if isinstance(self.service, LLMService):
+            if isinstance(self.service, LLMService): 
                 pass
 
-    async def execute(self):
-        
+    def execute(self):
+
         print(
             f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}, start ..."
         )
-        await asyncio.sleep(1)
-        self.process_result = await self.service(self.prev_result)
+        self.process_result = self.service(self.prev_result)
+        print(self.process_result)
         print(
             f"Executing workflow {self.name.value} with resources: {self.service.call_model_resource}, end ..."
         )

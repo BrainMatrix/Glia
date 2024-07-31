@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, heitong
+# This file is distributed under the same license as the sphinx test
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: sphinx test \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-23 17:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: ../src.schedule.rst:2
+msgid "src.schedule package"
+msgstr ""
+
+#: ../src.schedule.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../src.schedule.rst:8
+msgid "src.schedule.schedule module"
+msgstr ""
+
+#: of src.schedule.DynamicPriorityQueue:1 src.schedule.Schedule:1
+#: src.schedule.Task:1 src.schedule.schedule.DynamicPriorityQueue:1
+#: src.schedule.schedule.Schedule:1 src.schedule.schedule.Task:1
+msgid "基类：:py:class:`object`"
+msgstr ""
+
+#: of src.schedule.schedule.DynamicPriorityQueue:1
+msgid "Operations related to dynamic priority queues"
+msgstr "动态优先级队列的相关操作"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.empty:1
+msgid "Check if the priority queue is empty"
+msgstr "检查优先队列是否为空。"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.empty
+#: src.schedule.schedule.DynamicPriorityQueue.get
+#: src.schedule.schedule.Task.execute_step
+msgid "返回"
+msgstr ""
+
+#: of src.schedule.schedule.DynamicPriorityQueue.empty:3
+msgid "Judgment result"
+msgstr "判决结果"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.empty
+#: src.schedule.schedule.DynamicPriorityQueue.get
+#: src.schedule.schedule.Task.execute_step
+msgid "返回类型"
+msgstr ""
+
+#: of src.schedule.schedule.DynamicPriorityQueue.get:1
+msgid "Get the task with the highest priority in the current priority queue"
+msgstr "获取当前优先级队列中优先级最高的任务"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.get:3
+msgid "The current highest priority task or an exception signal"
+msgstr "当前最高优先级任务或异常信号"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.put:1
+msgid "Add a task to the dynamic priority queue"
+msgstr "在动态优先级队列中添加一个任务"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.put
+#: src.schedule.schedule.Schedule.add_task src.schedule.schedule.Schedule.start
+#: src.schedule.schedule.Task
+msgid "参数"
+msgstr ""
+
+#: of src.schedule.schedule.DynamicPriorityQueue.put:3
+#: src.schedule.schedule.Schedule.add_task:3
+msgid "Task priority, the smaller the number, the higher the priority"
+msgstr "任务优先级，数值越小，优先级越高。"
+
+#: of src.schedule.schedule.DynamicPriorityQueue.put:5
+#: src.schedule.schedule.Schedule.add_task:5
+msgid "The task object to be added"
+msgstr "待添加的任务对象"
+
+#: of src.schedule.schedule.Schedule:1
+msgid "Priority class"
+msgstr "优先级类别"
+
+#: of src.schedule.schedule.Schedule.add_task:1
+msgid "Form a priority queue by adding tasks based on their priority"
+msgstr "创建一个优先队列，根据任务的优先级添加任务。"
+
+#: of src.schedule.schedule.Schedule.join:1
+msgid "Wait for all worker threads to complete"
+msgstr "等待所有工作线程完成"
+
+#: of src.schedule.schedule.Schedule.start:1
+msgid ""
+"Create multiple worker threads to execute `worker_task` and add them to "
+"the worker list"
+msgstr "创建多个工作线程来执行 `worker_task` 并将它们添加到工作线程列表中。"
+
+#: of src.schedule.schedule.Schedule.start:3
+msgid "Number of threads created, defaults to 1"
+msgstr "创建的线程数量，默认为1。"
+
+#: of src.schedule.schedule.Schedule.worker_task:1
+msgid "The specific task logic executed by the worker thread `worker_task`"
+msgstr "工作线程 `worker_task` 执行的具体任务逻辑"
+
+#: of src.schedule.schedule.Task:1
+msgid "Task Class"
+msgstr "任务类"
+
+#: of src.schedule.schedule.Task:3
+msgid "Task Description"
+msgstr "任务描述"
+
+#: of src.schedule.schedule.Task:5
+msgid "Total number of steps to complete the task, defaults to 1"
+msgstr "完成任务的总步骤数，默认为1"
+
+#: of src.schedule.schedule.Task.execute_step:1
+msgid ""
+"Execute one step of the task. If the task is not complete, print the "
+"current progress of the task and return ``False``; if the task is fully "
+"completed, return ``True``."
+msgstr "执行任务的一个步骤。如果任务未完成，打印当前任务进度并返回 ``False``；如果任务完全完成，返回 ``True``。"
+
+#: of src.schedule.schedule.Task.execute_step:3
+msgid "Is the task complete?"
+msgstr "任务是否已完成？"
+
+#: ../src.schedule.rst:16
+msgid "Module contents"
+msgstr "模块内容"
+

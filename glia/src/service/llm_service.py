@@ -8,14 +8,16 @@ class LLMService(BaseService):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    async def execute(self):
+    def execute(self):
 
         print(
-            f"Executing service {self.name} with resources: {self.call_model_resource}, start ..."
+            f"Executing service {id(self)} {self.name} with resources: {self.call_model_resource}, start ..."
         )
-        await asyncio.sleep(1)
-        self.process_result = self.call_model(self.prev_result)
+        # await asyncio.sleep(1)
+        self.process_result = self.loop.run_until_complete(
+            self.call_model(self.prev_result)
+        )
         print(
-            f"Executing service {self.name} with resources: {self.call_model_resource}, end ..."
+            f"Executing service {id(self)} {self.name} with resources: {self.call_model_resource}, end ..."
         )
         return self.process_result

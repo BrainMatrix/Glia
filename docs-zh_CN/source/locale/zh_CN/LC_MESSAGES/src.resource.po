@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, heitong
+# This file is distributed under the same license as the sphinx test
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: sphinx test \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-23 17:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: ../src.resource.rst:2
+msgid "src.resource package"
+msgstr ""
+
+#: ../src.resource.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../src.resource.rst:8
+msgid "src.resource.resource module"
+msgstr ""
+
+#: of src.resource.resource.Resource:1
+#: src.resource.resource_manager.ResourceManager:1
+msgid "基类：:py:class:`object`"
+msgstr ""
+
+#: of src.resource.resource.Resource:1
+msgid ""
+"A class that describes the composition of resources, including CPU, GPU, "
+"and multi-GPU."
+msgstr "描述资源组成的类，包括CPU、GPU以及多GPU配置。"
+
+#: of src.resource.resource.Resource
+#: src.resource.resource_manager.ResourceManager.adjust_resources
+#: src.resource.resource_manager.ResourceManager.allocate_resources
+#: src.resource.resource_manager.ResourceManager.monitor_model
+#: src.resource.resource_manager.ResourceManager.register_model
+#: src.resource.resource_manager.ResourceManager.register_model_list
+#: src.resource.resource_manager.ResourceManager.set_permissions
+#: src.resource.resource_manager.ResourceManager.set_security_policy
+msgid "参数"
+msgstr ""
+
+#: of src.resource.resource.Resource:3
+msgid "Whether to use CPU resources, defaults to `False`"
+msgstr "是否使用CPU资源，默认为`False`。"
+
+#: of src.resource.resource.Resource:5
+msgid "Whether to use GPU resources, defaults to `False`"
+msgstr "是否使用GPU资源，默认为`False`。"
+
+#: of src.resource.resource.Resource:7
+msgid "List of GPU IDs to use in multi-GPU setup, defaults to None"
+msgstr "多GPU配置中使用的GPU ID列表，默认为空。"
+
+#: ../src.resource.rst:16
+msgid "src.resource.resource\\_manager module"
+msgstr ""
+
+#: of src.resource.resource_manager.ResourceManager:1
+msgid "A resource manager that can allocate, record, view, and monitor resources."
+msgstr "一个能够分配、记录、查看和监控资源的资源管理器。"
+
+#: of src.resource.resource_manager.ResourceManager.adjust_resources:1
+msgid "Adjust resources for a model that has already been allocated resources."
+msgstr "调整已分配资源模型的资源配置。"
+
+#: of src.resource.resource_manager.ResourceManager.adjust_resources:3
+#: src.resource.resource_manager.ResourceManager.allocate_resources:3
+#: src.resource.resource_manager.ResourceManager.monitor_model:3
+#: src.resource.resource_manager.ResourceManager.register_model:3
+#: src.resource.resource_manager.ResourceManager.set_permissions:3
+#: src.resource.resource_manager.ResourceManager.set_security_policy:3
+msgid "Model Name"
+msgstr "模型名称"
+
+#: of src.resource.resource_manager.ResourceManager.adjust_resources:5
+msgid "Newly Allocated Resources"
+msgstr "新分配的资源"
+
+#: of src.resource.resource_manager.ResourceManager.allocate_resources:1
+msgid ""
+"Allocate resources to a model in the `self.models` dictionary and record "
+"it in the `self.allocated_resources` dictionary that stores allocated "
+"resources."
+msgstr "在 `self.models` 字典中为模型分配资源，并将其记录在 `self.allocated_resources` 字典中，该字典存储已分配的资源。"
+
+#: of src.resource.resource_manager.ResourceManager.monitor_model:1
+msgid ""
+"Track a specific model in the `self.models` dictionary and add it to the "
+"tracking list."
+msgstr "追踪`self.models`字典中的特定模型，并将其添加到跟踪列表中。"
+
+#: of src.resource.resource_manager.ResourceManager.register_model:1
+msgid ""
+"Register a model and its corresponding required resources into the "
+"dictionary `self.models` in the resource manager."
+msgstr "在资源管理器中，将模型及其相应的必需资源注册到字典 `self.models` 中。"
+
+#: of src.resource.resource_manager.ResourceManager.register_model:5
+msgid "Resources Required by the Model"
+msgstr "模型所需的资源"
+
+#: of src.resource.resource_manager.ResourceManager.register_model_list:1
+msgid ""
+"Merge the dictionary formed by the model and its required resources into "
+"the `self.models` dictionary."
+msgstr "将模型及其所需资源组成的字典合并到 `self.models` 字典中。"
+
+#: of src.resource.resource_manager.ResourceManager.register_model_list:3
+msgid ""
+"The dictionary formed by the model and its required resources to be "
+"merged."
+msgstr "模型及其所需资源构成的字典，需进行合并。"
+
+#: of src.resource.resource_manager.ResourceManager.set_permissions:1
+msgid "Write the permissions of the model into the info log."
+msgstr "将模型权限写入信息日志。"
+
+#: of src.resource.resource_manager.ResourceManager.set_permissions:5
+msgid "Permissions of the Model"
+msgstr "模型权限"
+
+#: of src.resource.resource_manager.ResourceManager.set_security_policy:1
+msgid "Write the security policy of the model into the info log."
+msgstr "将模型的安全策略写入信息日志。"
+
+#: of src.resource.resource_manager.ResourceManager.set_security_policy:5
+msgid "Security Policy of the Model"
+msgstr "模型安全策略"
+
+#: ../src.resource.rst:24
+msgid "Module contents"
+msgstr "模块内容"
+

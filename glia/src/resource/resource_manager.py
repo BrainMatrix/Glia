@@ -6,6 +6,8 @@ from glia.src.resource import Resource
 
 from glia.src.model import MODEL_REGISTRY
 
+from glia.src.model.base_model import BaseModel
+
 
 # 定义资源管理类
 class ResourceManager:
@@ -19,6 +21,7 @@ class ResourceManager:
         self.models: Dict[str, Resource] = {}  # 存储模型资源需求
         self.allocated_resources: Dict[str, Resource] = {}  # 存储已分配的资源
         self.monitored_models: List[str] = []  # 存储需要监控的模型
+        self.allocated_models: Dict[str, BaseModel] = {}
 
     def register_model(self, model_name: str, resources: Resource):
         """Register a model and its corresponding required resources into the dictionary `self.models` in the resource manager.
@@ -30,7 +33,6 @@ class ResourceManager:
         
         """
         self.models[model_name] = resources
-        logging.info(f"Register model {model_name} with resources {resources}")
 
     def register_model_list(self, union_model_resources):
         """Merge the dictionary formed by the model and its required resources into the `self.models` dictionary.

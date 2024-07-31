@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, heitong
+# This file is distributed under the same license as the sphinx test
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: sphinx test \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-23 17:11+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: ../src.model.rst:2
+msgid "src.model package"
+msgstr ""
+
+#: ../src.model.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../src.model.rst:8
+msgid "src.model.base\\_model module"
+msgstr ""
+
+#: of src.model.base_model.BaseModel:1
+msgid "基类：:py:class:`~abc.ABC`"
+msgstr ""
+
+#: of src.model.base_model.BaseModel:1
+msgid ""
+"This is a Model base class that defines two abstract methods, `__init__` "
+"and `__call__`, which need to be implemented in the subclasses."
+msgstr "这是一个模型基类，定义了两个抽象方法，`__init__` 和 `__call__`，需要在子类中实现。"
+
+#: ../src.model.rst:16
+msgid "src.model.llm\\_model module"
+msgstr ""
+
+#: of src.model.llm_model.LLMModel:1 src.model.ocr_model.OCRModel:1
+#: src.model.sr_model.SRModel:1 src.model.tts_model.TTSModel:1
+msgid "基类：:py:class:`~src.model.base_model.BaseModel`"
+msgstr ""
+
+#: of src.model.llm_model.LLMModel:1
+msgid "LLM Model Class"
+msgstr "大型语言模型类别"
+
+#: ../src.model.rst:24
+msgid "src.model.model\\_registry module"
+msgstr ""
+
+#: ../src.model.rst:32
+msgid "src.model.ocr\\_model module"
+msgstr ""
+
+#: of src.model.ocr_model.OCRModel:1
+msgid "OCR Model Class"
+msgstr "OCR模型类别"
+
+#: ../src.model.rst:40
+msgid "src.model.sr\\_model module"
+msgstr ""
+
+#: of src.model.sr_model.SRModel:1
+msgid "SR Model Class"
+msgstr "SR模型类"
+
+#: ../src.model.rst:48
+msgid "src.model.tts\\_model module"
+msgstr ""
+
+#: of src.model.tts_model.TTSModel:1
+msgid "TTS Model Class"
+msgstr "TTS模型类"
+
+#: ../src.model.rst:56
+msgid "Module contents"
+msgstr "模块内容"
+

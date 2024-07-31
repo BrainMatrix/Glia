@@ -156,12 +156,12 @@ if __name__ == "__main__":
     schedule = Schedule()
 
     tasks = [
-        (2, Task("优先级2的任务", 2)),
-        (3, Task("优先级3的任务", 3)),
-        (4, Task("优先级4的任务", 4)),
-        (6, Task("优先级6的任务", 2)),
-        (5, Task("优先级5的任务", 3)),
-        (5, Task("Urgent task", 3)),
+        (2, Task("优先级2的任务", 1)),
+        (3, Task("优先级3的任务", 1)),
+        (4, Task("优先级4的任务", 1)),
+        (6, Task("优先级6的任务", 1)),
+        (5, Task("优先级5的任务", 1)),
+        (5, Task("Urgent task", 1)),
     ]
 
     for priority, task in tasks:

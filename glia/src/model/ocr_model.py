@@ -16,7 +16,7 @@ class OCRModel(BaseModel):
         self.name = "ocr"
         pass
 
-    def __call__(self, data):
+    async def __call__(self, data):
     
         text = (
             data + ",我是ocr返回的结果"

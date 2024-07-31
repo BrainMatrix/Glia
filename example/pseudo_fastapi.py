@@ -38,10 +38,13 @@ class TestAIWorkflow(BaseWorkflow):
         name: Enum = None,
         resource_manager: ResourceManager = None,
         schedule: Schedule = None,
-        loop=asyncio.new_event_loop(),
+        loop=asyncio.get_event_loop(),
     ):
         """Constructor method"""
-        super().__init__(name=name, resource_manager=resource_manager, loop=loop)
+        super().__init__(
+            name=name,
+            resource_manager=resource_manager,
+        )
         self.resource_manager = resource_manager
         self.loop = loop
 
@@ -65,7 +68,7 @@ class TestAIWorkflow(BaseWorkflow):
             self.sr_workflow, self.llm_agent_workflow, self.tts_workflow
         )
 
-    def __call__(self, input):
+    async def __call__(self, input):
         """Accept input, call the 'run' method to asynchronously run the entire algorithm workflow, and return the final result.
 
         :param input: Input
@@ -86,6 +89,7 @@ class TestAIWorkflow(BaseWorkflow):
         :type input: Any
 
         """
+        # while not self.schedule.control_event.is_set():
         preprocessed_str = self.sr_workflow(input)
         llm_output = self.llm_agent_workflow(preprocessed_str)
         tts_output = self.tts_workflow(llm_output)
@@ -103,7 +107,24 @@ def run_asyncio_in_thread(loop, workflow, *args):
     return result
 
 
-logging.basicConfig(level=logging.INFO)
+from fastapi import FastAPI
+from pydantic import BaseModel
+import uvicorn
+import nest_asyncio
+
+nest_asyncio.apply()
+app = FastAPI()
+
+
+@app.get("/items/")
+async def read_item(input: str):
+
+    res = await my_workflow(input)
+    print(my_workflow.print_resource_strategy())  # 目前实现的效果还是同步的
+
+    return {"res": res}
+
+
 if __name__ == "__main__":
 
     resource_manager = ResourceManager()
@@ -124,43 +145,7 @@ if __name__ == "__main__":
         name=WorkflowName.MAIN,
         resource_manager=resource_manager,
         schedule=schedule,
-        loop = loop
+        loop=loop,
     )
 
-    loop2 = asyncio.new_event_loop()
-    my_workflow2 = TestAIWorkflow(
-        name=WorkflowName.MAIN,
-        resource_manager=resource_manager,
-        schedule=schedule,
-        loop = loop2
-    )
-
-    monitor_workflow = monitor_man_falls_workflow(
-        name=WorkflowName.Monitor,
-        resource_manager=resource_manager,
-        schedule=schedule,
-    )
-
-    workflows = [
-        (my_workflow, "hello1"),
-        (my_workflow2, "hello2"),
-        # (monitor_workflow, ""),
-    ]
-
-    # loops = [asyncio.new_event_loop() for _ in workflows]
-
-    output_list = []
-    start = time.time()
-    with ThreadPoolExecutor(max_workers=2) as executor:
-        futures = [executor.submit(workflow, param) for (workflow, param) in workflows]
-        print("len(futures)", len(futures))
-        for future in futures:
-            future.result()
-        for workflow, param in workflows:
-            workflow.loop.close()
-    print(time.time() - start)
-
-    # print(my_workflow("hello"))
-    # print(my_workflow("hello"))
-    # print(my_workflow.print_resource_strategy())
-    # print(my_workflow2.print_resource_strategy())
+    uvicorn.run(app, host="127.0.0.1", port=65501)
