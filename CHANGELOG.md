@@ -1,12 +1,8 @@
-##  (2024-07-23)
+# Changelog
 
-* ✨ feat: merge branches ([c36fdb1](https://github.com/BrainMatrix/Glia/commit/c36fdb1))
-* ✨ feat: merge branches ([76dd963](https://github.com/BrainMatrix/Glia/commit/76dd963))
-* 🐛 fix: 格式的修改 ([2699dc1](https://github.com/BrainMatrix/Glia/commit/2699dc1))
-* 📝 docs: 添加schedule说明文档 ([126677c](https://github.com/BrainMatrix/Glia/commit/126677c))
-* 🔖 tag(package.json): v1.1.1 ([1e51509](https://github.com/BrainMatrix/Glia/commit/1e51509))
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
-
+## [1.1.2](https://github.com/BrainMatrix/Glia/compare/v1.1.1...v1.1.2) (2024-07-31)
 
 ## 1.1.0 (2024-07-23)
 
@@ -87,6 +83,3 @@
 * 📝 docs(CHANGELOG.md): automatic update ([73d24b1](https://github.com/BrainMatrix/Glia/commit/73d24b1))
 * 🔖 tag(package.json): v1.0.0 ([8f834a4](https://github.com/BrainMatrix/Glia/commit/8f834a4))
 * Initial commit ([8c7a3e5](https://github.com/BrainMatrix/Glia/commit/8c7a3e5))
-
-
-
