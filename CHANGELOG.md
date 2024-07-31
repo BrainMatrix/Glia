@@ -1,8 +1,20 @@
-# Changelog
+##  (2024-07-31)
 
-All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+* ✨ feat: the exposed interface is changed from synchronous to asynchronous, ([8ef3a78](https://github.com/BrainMatrix/Glia/commit/8ef3a78))
+* 🔖 tag(package.json): v1.1.2 ([49eecdf](https://github.com/BrainMatrix/Glia/commit/49eecdf))
 
-## [1.1.2](https://github.com/BrainMatrix/Glia/compare/v1.1.1...v1.1.2) (2024-07-31)
+
+
+## <small>1.1.1 (2024-07-23)</small>
+
+* ✨ feat: merge branches ([c36fdb1](https://github.com/BrainMatrix/Glia/commit/c36fdb1))
+* ✨ feat: merge branches ([76dd963](https://github.com/BrainMatrix/Glia/commit/76dd963))
+* 🐛 fix: 格式的修改 ([2699dc1](https://github.com/BrainMatrix/Glia/commit/2699dc1))
+* 📝 docs: 添加schedule说明文档 ([126677c](https://github.com/BrainMatrix/Glia/commit/126677c))
+* 📝 docs(CHANGELOG.md): automatic update ([8b68e40](https://github.com/BrainMatrix/Glia/commit/8b68e40))
+* 🔖 tag(package.json): v1.1.1 ([1e51509](https://github.com/BrainMatrix/Glia/commit/1e51509))
+
+
 
 ## 1.1.0 (2024-07-23)
 
@@ -83,3 +95,6 @@ All notable changes to this project will be documented in this file. See [commit
 * 📝 docs(CHANGELOG.md): automatic update ([73d24b1](https://github.com/BrainMatrix/Glia/commit/73d24b1))
 * 🔖 tag(package.json): v1.0.0 ([8f834a4](https://github.com/BrainMatrix/Glia/commit/8f834a4))
 * Initial commit ([8c7a3e5](https://github.com/BrainMatrix/Glia/commit/8c7a3e5))
+
+
+
