@@ -17,12 +17,12 @@ class SpeechRecognitionService(BaseService):
         :rtype: Any
         
         """
-        print(
-            f"Executing service {self.name} with resources: {self.call_model_resource}, start ..."
-        )
+        #print(
+        #    f"Executing service {self.name} with resources: {self.call_model_resource}, start ..."
+        #)
         await asyncio.sleep(1)
         self.process_result = self.call_model(self.prev_result)
-        print(
-            f"Executing service {self.name} with resources: {self.call_model_resource}"
-        )
-        return self.process_result
+        #print(
+        #    f"Executing service {self.name} with resources: {self.call_model_resource}"
+        #)
+        #return self.process_result

@@ -8,6 +8,7 @@ from glia.src.resource import Resource, ResourceManager
 from glia.src.utils.print_table import build_tree
 from glia.src.utils.model_utils import get_model_instance
 from glia.src.service.base_service import BaseService
+from glia.src.schedule.schedule import Schedule
 
 
 class BaseWorkflow(object):
@@ -19,55 +20,57 @@ class BaseWorkflow(object):
     :type service: class:'BaseService'
     :param resource_manager: Instance object of the ResourceManager, defaults to None
     :type resource_manager: class:'ResourceManager'
-    :param priority_factor: Priority Level, defaults to 100
-    :type priority_factor: int
     
     """
     def __init__(
         self,
         name: Enum = None,
-        service: BaseService = None,
+        service_priority: int = None,
         resource_manager: ResourceManager = None,
-        priority_factor: int = 100,
+        schedule: Schedule = None,
+        service: BaseService =None,
     ):
-        """Constructor method
-        
-        """
+      
         self.name = name
-        self.service = service
+        self.service : BaseService = service
+        self.service_priority: int = service_priority
         self.sub_workflows: Dict[Enum, BaseWorkflow] = {}
-        self.resource_manager = resource_manager
-
+        self.branch_list : Dict[str, BaseWorkflow] = {}
+        self.resource_manager: ResourceManager  = resource_manager
+        self.schedule: Schedule = schedule
         self.process_result = None  # current process result
-        self.priority_factor = priority_factor
-
-    def set_priority_factor(self, new_priority_factor):
-        """Set the priority level of the workflow.
-        
-        :param new_priority_factor: Priority Level
-        :type new_priority_factor: int
-        
-        """
-        self.priority_factor = new_priority_factor
-
-    def get_priority_factor(self):
-        """Get the priority level of the workflow.
-        
-        :return: Current priority level of the workflow
-        :rtype: int
-        
-        """
-        return self.priority_factor
-
+    
+    
     def add_sub_workflow(self, *sub_workflows):
-        """Add a new sub-workflow to the current workflow.
-        
-        :param sub_workflows: One or more instances of `BaseWorkflow`
-        :type sub_workflows: class:'BaseWorkflow'
-        
-        """
+    #可以加一个当前workflow是否在sub_workflow字典里的判定
         for workflow in sub_workflows:
-            self.sub_workflows[workflow.name] = workflow
+           self.sub_workflows[workflow.name] = workflow    
+            
+    def call_other_workflow(self, *other_workflows):
+        
+        for workflow in other_workflows:
+            self.sub_workflows[workflow.name] = workflow #需要存放在这个字典中吗
+            
+            
+    def recursive_call(self):
+        
+        self.sub_workflows[self.name] = self
+        
+        #以上几种调用方法，是否应放在多Workflow的类里面
+        
+        
+    async def __loop_call__(self, times, prev_result):
+        self.times=times
+        self.prev_result=prev_result
+        while(self.times):
+            
+          await self.execute()
+          self.prev_result=self.process_result        
+          self.times -= 1
+          
+        return self.process_result      
+    
+        
 
     async def __call__(self, prev_result):
         """Accept the result of the previous step, call `execute()` to run the workflow, and return the execution result.
@@ -79,16 +82,30 @@ class BaseWorkflow(object):
         
         """
     
-        self.prev_result = prev_result
-        self.process_result = await self.execute()
+        self.prev_result = prev_result #将prev_result保存到实例属性self.prev_result中，供后续使用。 self.的数据为在类的生存周期中的全局数据，不加self的数据仅仅作用于功能函数执行期间
+        await self.execute()
         return self.process_result
 
     async def execute(self):
         """Execute the Workflow
-        
         """
         pass
   
+  
+    def set_branch(self, branch_name):
+        
+        pass
+    
+    def merge_branches(self, *branches_names):
+        
+        pass
+    
+    def split_branches(self, *branches_names):
+        
+        pass
+    
+    
+    
 
     def get_resource_strategy(self):
         """Get all resource configurations of the current workflow and its sub-workflows, as well as their input data and output data.

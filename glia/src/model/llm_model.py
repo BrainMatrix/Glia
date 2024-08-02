@@ -27,7 +27,7 @@ class LLMModel(BaseModel):
         """
        
         text = (
-            data + ",我是llm返回的结果"
+            data + ",我是llm返回的结果" 
             if data is not None
             else "None" + ",我是llm返回的结果"
         )

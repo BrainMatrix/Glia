@@ -13,6 +13,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *llm\_model module* 
@@ -22,6 +23,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *model\_registry module* 
@@ -31,6 +33,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *ocr\_model module* 
@@ -40,6 +43,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *sr\_model module*
@@ -49,6 +53,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *tts\_model module* 
@@ -58,6 +63,7 @@ Model
    :members:
    :undoc-members:
    :show-inheritance:
+   :special-members: __call__, __init__
    :noindex:
 
 *Module contents*

@@ -51,13 +51,21 @@ class ResourceManager:
         :type model_name: str
         
         """
-        if model_name in self.models:
+        #加一个判定当前资源是否充足的语句，如果充足，执行以下语句并返回True,否则不执行以下语句直接返回False
+        if model_name in self.models:#判定model是否注册在字典中
             self.allocated_resources[model_name] = self.models[model_name]
             logging.info(
                 f"Allocated resources for model {model_name}: {self.models[model_name]}"
             )
+            return True
         else:
             logging.warning(f"Model {model_name} not found")
+            return False
+            
+    def release_resources(self, model_name: str):
+        if model_name in self.allocated_resources:
+            del self.allocated_resources[model_name]
+      
 
     def monitor_model(self, model_name: str):
         """Track a specific model in the `self.models` dictionary and add it to the tracking list.

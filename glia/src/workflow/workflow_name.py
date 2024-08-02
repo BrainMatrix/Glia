@@ -19,6 +19,10 @@ class WorkflowName(Enum):
     
     """
     MAIN = "Main"
+    MAIN0 = "Main0"
+    MAIN3 = "MAIN3"
+    MAIN2 = "MAIN2"
+    MAIN1 = "MAIN1"
     SUB_1 = "Sub1"
     SUB_2 = "Sub2"
     SUB_3 = "Sub3"
