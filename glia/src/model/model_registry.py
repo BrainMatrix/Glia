@@ -4,7 +4,8 @@ from .ocr_model import OCRModel
 from .sr_model import SRModel
 from .llm_model import LLMModel
 from .tts_model import TTSModel
-
+from .vllm_model import VLLMModel
+from .sentencetransformer_model import SentenceTransformerModel
 
 # class ModelName(Enum):
 #     Parseq = OCRModel()
@@ -28,4 +29,6 @@ MODEL_REGISTRY = {
     "Whisper": SRModel,
     "OPENCHAT": LLMModel,
     "CHATTTS": TTSModel,
+    "VLLM": VLLMModel,
+    "SentenceTransformer":SentenceTransformerModel
 }

@@ -7,8 +7,9 @@ class BaseModel(ABC):
     """
     @abstractmethod
     def __init__(self, *args, **kwargs):
+        self.model_name = None
         pass
-
+    
     @abstractmethod
     def __call__(self, *args, **kwargs):
         pass
